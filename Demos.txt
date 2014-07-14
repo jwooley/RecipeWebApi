@@ -1,0 +1,42 @@
+CRUD
+http://localhost:1720/api/Categories
+http://localhost:1720/api/Categories/1
+
+POST api/Categories {Description: 'Test'}
+ - 201 created, Location in header with new id, response with created item
+DELETE api/Categories/{id}
+
+http://localhost:1720/services/MeasureConverter/GetMeasures
+Content-Type: text/xml
+Content-Type: text/json
+
+Scaffolding
+http://localhost:1720/api/Ingredients/1
+
+Documentation
+Rest/routing
+http://localhost:1720/services/Directions/GetDirectionsForRecipe/1
+http://localhost:1720/api/Recipe/1/Ingredients (route attribute)
+
+IQueryable
+http://localhost:1720/api/Categories?$select=Description
+http://localhost:1720/api/Categories?$select=Description&$orderby=Description
+http://localhost:1720/Services/Recipes/GetRecipes?$filter=startswith(Title,'chocolate')
+http://docs.oasis-open.org/odata/odata/v4.0/os/part2-url-conventions/odata-v4.0-os-part2-url-conventions.html#_Toc372793790
+
+OdataQueryOptions
+http://localhost:1720/services/Directions/GetPagedDirections?$where=RecipeId eq 1
+http://localhost:1720/services/Directions/GetPagedDirections?$inlinecount=allpages&$top=5
+
+Children loading
+http://localhost:1720/api/Categories?$expand=Recipes
+http://localhost:1720/services/Recipes/GetRecipe/1
+	Errors fix with RecipeById/1
+http://localhost:1720/services/Recipes/RecipeDtos?$top=5
+http://localhost:1720/services/Recipes/RecipeByIdAsync/1
+
+http://localhost:1720/services/Directions/GetDirectionsForRecipe/1
+
+Logging
+http://localhost:1720/services/Directions/GetPagedDirections?$inlinecount=allpages&$top=5
+
