@@ -10,20 +10,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using RecipeDal;
+using System.Web.Http.OData;
 
 namespace Recipe.Web.Services
 {
-    /// <summary>
-    /// Access to the ingredients. This is custom for CodeStock
-    /// </summary>
     public class IngredientsController : ApiController
     {
         private RecipeContext db = new RecipeContext();
 
-        /// <summary>
-        /// Gets a LOT of ingredients
-        /// </summary>
-        /// <returns></returns>
+        [EnableQuery(MaxTop =50, PageSize =20)]
+        // GET: api/Ingredients
         public IQueryable<Ingredient> GetIngredients()
         {
             return db.Ingredients;

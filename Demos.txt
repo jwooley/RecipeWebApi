@@ -9,9 +9,11 @@ DELETE api/Categories/{id}
 http://localhost:1720/services/MeasureConverter/GetMeasures
 Content-Type: text/xml
 Content-Type: text/json
+content-type: application/rss+xml
 
 Scaffolding
 http://localhost:1720/api/Ingredients/1
+[EnableQuery(MaxTop =50, PageSize =20)]
 
 Documentation
 Rest/routing
@@ -25,7 +27,7 @@ http://localhost:1720/Services/Recipes/GetRecipes?$filter=startswith(Title,'choc
 http://docs.oasis-open.org/odata/odata/v4.0/os/part2-url-conventions/odata-v4.0-os-part2-url-conventions.html#_Toc372793790
 
 OdataQueryOptions
-http://localhost:1720/services/Directions/GetPagedDirections?$where=RecipeId eq 1
+http://localhost:1720/services/Directions/GetPagedDirections?$where=RecipeId%20eq%201
 http://localhost:1720/services/Directions/GetPagedDirections?$inlinecount=allpages&$top=5
 
 Children loading

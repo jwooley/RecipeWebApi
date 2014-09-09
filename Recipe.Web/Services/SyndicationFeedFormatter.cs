@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Recipe.Web
 {
@@ -42,6 +44,8 @@ namespace Recipe.Web
         public override bool CanWriteType(Type type)
         {
             if ((TypeHelpers.IsSubclassOfRawGeneric(typeof(ISyndicationItemSerializable), type) || type.IsSubclassOf(typeof(IEnumerable<ISyndicationItemSerializable>))))
+                return true;
+            else if (type.IsSubclassOf(typeof(XNode)))
                 return true;
             else
                 return false;
@@ -105,6 +109,20 @@ namespace Recipe.Web
             else if (models is ISyndicationItemSerializable)
             {
                 items.Add(((ISyndicationItemSerializable)models).BuildSyndicationItem());
+            }
+            var xModels = models as XElement;
+            if (models != null)
+            {
+                foreach(var child in xModels.Elements() )
+                {
+                    var item = new SyndicationItem();
+                    foreach (var node in child.Elements())
+                    {
+                        item.ElementExtensions.Add(node);
+                    }
+                    items.Add(item);
+                    //items.Add(new SyndicationItem { Content = new TextSyndicationContent( child.ToString()), Title = new TextSyndicationContent( child.Elements().First().Value)});
+                }
             }
             feed.Items = items;
 
