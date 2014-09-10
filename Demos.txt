@@ -40,5 +40,5 @@ http://localhost:1720/services/Recipes/RecipeByIdAsync/1
 http://localhost:1720/services/Directions/GetDirectionsForRecipe/1
 
 Logging
-http://localhost:1720/services/Directions/GetPagedDirections?$inlinecount=allpages&$top=5
+http://localhost:1720/services/Directions/GetPagedDirections?$inlinecount=allpages&$top=5 
 

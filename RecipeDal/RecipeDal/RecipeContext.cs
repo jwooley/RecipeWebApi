@@ -25,6 +25,7 @@ namespace RecipeDal
         public static RecipeContext ContextFactory([CallerMemberName] string memberName = "")
         {
             var context = new RecipeContext();
+            context.Configuration.LazyLoadingEnabled = false;
             context.CallingMethod = memberName;
             context.Database.Log = val => Trace.WriteLine(val);
             return context;

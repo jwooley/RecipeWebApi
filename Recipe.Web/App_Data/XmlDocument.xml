@@ -486,6 +486,11 @@
             Extension methods to wrap an IQueryable value into a paged result.
             </summary>
         </member>
+        <member name="T:Recipe.Web.Services.IngredientsController">
+            <summary>
+            This is an accessor for the Ingredients
+            </summary>
+        </member>
         <member name="M:Recipe.Web.Services.RecipesController.GetRecipeIngredients(System.Int64)">
             <summary>
             This is an example of a custom attribute controller. This fetches the child

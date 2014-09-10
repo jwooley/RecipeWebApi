@@ -14,11 +14,18 @@ using System.Web.Http.OData;
 
 namespace Recipe.Web.Services
 {
+    /// <summary>
+    /// This is an accessor for the Ingredients
+    /// </summary>
     public class IngredientsController : ApiController
     {
         private RecipeContext db = new RecipeContext();
 
-        [EnableQuery(MaxTop =50, PageSize =20)]
+        [EnableQuery(MaxTop = 50, PageSize = 20)]
+        /// <summary>
+        /// This is how we get the list of ingredients
+        /// </summary>
+        /// <returns></returns>
         // GET: api/Ingredients
         public IQueryable<Ingredient> GetIngredients()
         {
