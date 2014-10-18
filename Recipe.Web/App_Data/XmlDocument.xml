@@ -491,6 +491,17 @@
             This is an accessor for the Ingredients
             </summary>
         </member>
+        <member name="T:Recipe.Web.Services.RecipesController">
+            <summary>
+            This is how you access recipes
+            </summary>
+        </member>
+        <member name="M:Recipe.Web.Services.RecipesController.GetRecipes">
+            <summary>
+            Use this method to get recipes. It's queryable, so you determine how you want them.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Recipe.Web.Services.RecipesController.GetRecipeIngredients(System.Int64)">
             <summary>
             This is an example of a custom attribute controller. This fetches the child

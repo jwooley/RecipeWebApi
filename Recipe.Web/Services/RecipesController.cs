@@ -14,11 +14,17 @@ using System.Threading.Tasks;
 
 namespace Recipe.Web.Services
 {
+    /// <summary>
+    /// This is how you access recipes
+    /// </summary>
     public class RecipesController : ApiController
     {
         private RecipeContext db = RecipeContext.ContextFactory();
 
-        // GET: api/Recipes
+        /// <summary>
+        /// Use this method to get recipes. It's queryable, so you determine how you want them.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<RecipeDal.Recipe> GetRecipes()
         {
             return db.Recipes;
