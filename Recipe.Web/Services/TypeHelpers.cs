@@ -17,7 +17,7 @@ namespace Recipe.Web
         /// IsSubclassOfRawGeneric(typeof(B), typeof(C) this would return false.
         /// 
         /// In the case of generic objects, this recursively walks the generic instance type. For example in
-        /// the case of a type defined as IEnumerable<Action<C>>, this would return true if the toCheck value was
+        /// the case of a type defined as IEnumerable(of Action(of C)), this would return true if the toCheck value was
         /// typeof(A) because C derives from A.
         /// </summary>
         /// <param name="generic">Object to check.</param>

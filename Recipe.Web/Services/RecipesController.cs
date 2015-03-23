@@ -11,6 +11,8 @@ using System.Web.Http.Description;
 using RecipeDal;
 using Recipe.Web.Services.DTO;
 using System.Threading.Tasks;
+using System.Web.Http.OData;
+using System.Web.Http.OData.Query;
 
 namespace Recipe.Web.Services
 {
@@ -118,6 +120,12 @@ namespace Recipe.Web.Services
         private bool RecipeExists(long id)
         {
             return db.Recipes.Count(e => e.RecipeId == id) > 0;
+        }
+
+        [HttpGet]
+        public PageResult GetPagedRecipes(ODataQueryOptions<RecipeDal.Recipe> options)
+        {
+            return db.Recipes.ToPageResult(options, base.Request);
         }
 
 

@@ -40,7 +40,7 @@ namespace Recipe.Web
         /// </summary>
         /// <param name="type">Type to check</param>
         /// <returns>True if the item or generic collection's items derives from 
-        /// <see cref="ISyndicationItemSerializble"/>. Otherwise returns false.</returns>
+        /// <see cref="ISyndicationItemSerializable"/>. Otherwise returns false.</returns>
         public override bool CanWriteType(Type type)
         {
             if ((TypeHelpers.IsSubclassOfRawGeneric(typeof(ISyndicationItemSerializable), type) || type.IsSubclassOf(typeof(IEnumerable<ISyndicationItemSerializable>))))

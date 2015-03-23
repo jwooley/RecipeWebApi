@@ -7,7 +7,9 @@ using Microsoft.Owin.Security.OAuth;
 //using Newtonsoft.Json.Serialization;
 using Recipe.Web.Services;
 using System.Web.Http.Tracing;
+using System.Web.Http.OData;
 using RecipeDal;
+using System.Web.Http.OData.Extensions;
 
 namespace Recipe.Web
 {
@@ -15,12 +17,9 @@ namespace Recipe.Web
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-            // Configure Web API to use only bearer token authentication.
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API routes
+            
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -34,7 +33,8 @@ namespace Recipe.Web
                 routeTemplate: "services/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional });
 
-            config.EnableQuerySupport();
+            config.AddODataQueryFilter();
+            
             config.Services.Replace(typeof(ITraceWriter), new ServiceTracer());
             config.Formatters.Add(new SyndicationFeedFormatter());
 

@@ -486,11 +486,6 @@
             Extension methods to wrap an IQueryable value into a paged result.
             </summary>
         </member>
-        <member name="T:Recipe.Web.Services.IngredientsController">
-            <summary>
-            This is an accessor for the Ingredients
-            </summary>
-        </member>
         <member name="M:Recipe.Web.Services.RecipesController.GetRecipeIngredients(System.Int64)">
             <summary>
             This is an example of a custom attribute controller. This fetches the child
@@ -542,7 +537,7 @@
             </summary>
             <param name="type">Type to check</param>
             <returns>True if the item or generic collection's items derives from 
-            <see cref="!:ISyndicationItemSerializble"/>. Otherwise returns false.</returns>
+            <see cref="T:Recipe.Web.ISyndicationItemSerializable"/>. Otherwise returns false.</returns>
         </member>
         <member name="M:Recipe.Web.SyndicationFeedFormatter.CanReadType(System.Type)">
             <summary>
@@ -587,6 +582,21 @@
             Type helper methods
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Recipe.Web.TypeHelpers.IsSubclassOfRawGeneric(System.Type,System.Type)" -->
+        <member name="M:Recipe.Web.TypeHelpers.IsSubclassOfRawGeneric(System.Type,System.Type)">
+            <summary>
+            Recursively walks the inheritance tree, to see if a given Type derives from a specified base type.
+            Thus given an object where C derives from B and B derives from A, this would return true where
+            C is the generic type and A or B were the toCheck type. However, if you check 
+            IsSubclassOfRawGeneric(typeof(B), typeof(C) this would return false.
+            
+            In the case of generic objects, this recursively walks the generic instance type. For example in
+            the case of a type defined as IEnumerable(of Action(of C)), this would return true if the toCheck value was
+            typeof(A) because C derives from A.
+            </summary>
+            <param name="generic">Object to check.</param>
+            <param name="toCheck">Desired type to be compared against.</param>
+            <returns>True if the given type derives from the specified base type or a Generic type contains
+            instances of the specified target type.</returns>
+        </member>
     </members>
 </doc>
