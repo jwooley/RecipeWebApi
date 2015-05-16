@@ -58,6 +58,7 @@
     <Compile Include="DbLogFormatter.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Ingredient.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Migrations\201404230212505_v2.cs" />
     <Compile Include="Migrations\201404230212505_v2.Designer.cs">
       <DependentUpon>201404230212505_v2.cs</DependentUpon>

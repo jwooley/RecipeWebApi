@@ -11,16 +11,16 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="RecipeDal.Direction">
-    <Position X="7" Y="4" Width="1.5" />
+    <Position X="7" Y="4.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAABAAAAgAAAAAAAIAAAAAAAAAAAAAIAAAAAAAAE=</HashCode>
       <FileName>Direction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RecipeDal.Ingredient">
-    <Position X="7" Y="1.75" Width="1.5" />
+    <Position X="7" Y="1.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAABAAgAAAgAAAAAAAAAAAAAAAABAAAEAAAAAAAAAA=</HashCode>
+      <HashCode>AAAABABgAAAgAAAAAAAAAAAAAAAABAAAEIAAAAAAAAA=</HashCode>
       <FileName>Ingredient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -32,8 +32,8 @@
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Categories" />
-      <Property Name="Directions" />
       <Property Name="Ingredients" />
+      <Property Name="Directions" />
     </ShowAsCollectionAssociation>
   </Class>
   <Font Name="Segoe UI" Size="10" />

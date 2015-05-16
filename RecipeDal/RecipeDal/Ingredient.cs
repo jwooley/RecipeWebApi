@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDal
 {
@@ -14,6 +15,10 @@ namespace RecipeDal
         [MaxLength(50)]
         public string Description { get; set; }
 
+        public long Recipe_RecipeId { get; set; }
+
+        [ForeignKey("Recipe_RecipeId")]
+        public Recipe Recipe { get; set; }
         // Parent
         //public Recipe Recipe { get; set; }
         

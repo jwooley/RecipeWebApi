@@ -9,7 +9,7 @@ namespace RecipeDal.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(RecipeDal.RecipeContext context)
