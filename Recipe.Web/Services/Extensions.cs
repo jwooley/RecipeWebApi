@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
-using System.Web.Http.OData;
-using System.Web.Http.OData.Query;
-using System.Web.Http.OData.Extensions;
+using System.Web.OData;
+using System.Web.OData.Query;
+using System.Web.OData.Extensions;
 
 namespace Recipe.Web.Services
 {

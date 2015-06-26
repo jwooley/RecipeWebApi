@@ -11,8 +11,8 @@ using System.Web.Http.Description;
 using RecipeDal;
 using Recipe.Web.Services.DTO;
 using System.Threading.Tasks;
-using System.Web.Http.OData;
-using System.Web.Http.OData.Query;
+using System.Web.OData;
+using System.Web.OData.Query;
 
 namespace Recipe.Web.Services
 {

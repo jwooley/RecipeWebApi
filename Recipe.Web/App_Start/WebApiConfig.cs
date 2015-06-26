@@ -7,9 +7,8 @@ using Microsoft.Owin.Security.OAuth;
 //using Newtonsoft.Json.Serialization;
 using Recipe.Web.Services;
 using System.Web.Http.Tracing;
-using System.Web.Http.OData;
 using RecipeDal;
-using System.Web.Http.OData.Extensions;
+using System.Web.OData.Extensions;
 
 namespace Recipe.Web
 {

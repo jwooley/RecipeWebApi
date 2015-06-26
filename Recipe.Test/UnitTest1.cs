@@ -43,16 +43,14 @@ namespace Recipe.Test
                 foreach (var recipe in category.Recipes)
                 {
                     Trace.WriteLine(recipe.Title);
-                    if (recipe.Categories.Count > 0)
-                        Trace.Write($"    Category: " + recipe.Categories.First().Description);
+                    Trace.Write($"    Category: " + category.Description);
 
-                    if (recipe.Ingredients.Any())
-                        foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
-                        {
-                            Trace.Write(dc.Ingredients.First(i => i.IngredientId == ingredient.IngredientId).Units);
-                            Trace.Write($" {dc.Ingredients.First(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
-                            Trace.WriteLine(dc.Ingredients.First(i => i.IngredientId == ingredient.IngredientId).Units);
-                        }
+                    foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
+                    {
+                        Trace.Write(ingredient.Units);
+                        Trace.Write($" {ingredient.UnitType} ");
+                        Trace.WriteLine(ingredient.Description);
+                    }
 
                     foreach (var directionLine in recipe.Directions.OrderBy(d => d.LineNumber))
                     {
@@ -142,8 +140,8 @@ namespace Recipe.Test
         public async Task<IEnumerable<RecipeDto>> GetRecipesAsync()
         {
             var brownies = await (from r in dc.Recipes
-                           where r.Title.Contains("Brownie")
-                           select new RecipeDto { Title = r.Title, Id = r.RecipeId })
+                                  where r.Title.Contains("Brownie")
+                                  select new RecipeDto { Title = r.Title, Id = r.RecipeId })
                            .ToListAsync();
 
             await Task.WhenAll(SetIngredientsAsync(brownies), SetDirectionsAsync(brownies));
@@ -267,10 +265,10 @@ namespace Recipe.Test
         {
             string[] targetCategories = { "Cheese/eggs", "Chocolate", "Children" };
             var recipes = (from recipe in dc.Recipes
-                          from category in recipe.Categories
-                          where targetCategories.Contains(category.Description)
-                          select recipe).ToList();
-            
+                           from category in recipe.Categories
+                           where targetCategories.Contains(category.Description)
+                           select recipe).ToList();
+
             Assert.IsTrue(recipes.Any());
         }
 
@@ -294,14 +292,14 @@ namespace Recipe.Test
             var sw = new Stopwatch();
             sw.Start();
             var chocolates = (from i in dc.Ingredients
-                             where i.Description.StartsWith("Chocolate")
-                             select new
-                             {
-                                 i.Description,
-                                 i.Recipe.Title,
-                                 i.Recipe.ServingQuantity,
-                                 i.Recipe.ServingMeasure
-                             }).ToList();
+                              where i.Description.StartsWith("Chocolate")
+                              select new
+                              {
+                                  i.Description,
+                                  i.Recipe.Title,
+                                  i.Recipe.ServingQuantity,
+                                  i.Recipe.ServingMeasure
+                              }).ToList();
             sw.Stop();
             Trace.WriteLine($"Fetched {chocolates.Count()} rows in {sw.ElapsedTicks} ticks");
 
