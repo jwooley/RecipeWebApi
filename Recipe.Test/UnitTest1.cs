@@ -43,14 +43,16 @@ namespace Recipe.Test
                 foreach (var recipe in category.Recipes)
                 {
                     Trace.WriteLine(recipe.Title);
-                    Trace.Write($"    Category: " + category.Description);
+                    if (recipe.Categories.Count > 0)
+                        Trace.Write($"    Category: " + recipe.Categories.First().Description);
 
-                    foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
-                    {
-                        Trace.Write(ingredient.Units);
-                        Trace.Write($" {ingredient.UnitType} ");
-                        Trace.WriteLine(ingredient.Description);
-                    }
+                    if (recipe.Ingredients.Any())
+                        foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
+                        {
+                            Trace.Write(dc.Ingredients.First(i => i.IngredientId == ingredient.IngredientId).Units);
+                            Trace.Write($" {dc.Ingredients.First(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
+                            Trace.WriteLine(dc.Ingredients.First(i => i.IngredientId == ingredient.IngredientId).Units);
+                        }
 
                     foreach (var directionLine in recipe.Directions.OrderBy(d => d.LineNumber))
                     {
@@ -59,6 +61,7 @@ namespace Recipe.Test
                 }
             }
         }
+
         [TestMethod]
         public void Recipe_EagerLoading()
         {
@@ -211,6 +214,22 @@ namespace Recipe.Test
             Assert.AreEqual(-9999, found.RecipeId);
         }
 
+        private IQueryable<RecipeDal.Recipe> GetConditional(RecipeConditions conditions)
+        {
+            IQueryable<RecipeDal.Recipe> recipes = dc.Recipes;
+
+            if (conditions.Servings > 0)
+                recipes = recipes.Where(r => r.ServingQuantity == conditions.Servings);
+            if (!String.IsNullOrEmpty(conditions.IngredientName))
+                recipes = recipes.Where(r => r.Ingredients.Any(i => i.Description.Contains(conditions.IngredientName)));
+            if (!String.IsNullOrEmpty(conditions.Category))
+                recipes = recipes.Where(r => r.Categories.Any(c => c.Description == conditions.Category));
+            if (!string.IsNullOrEmpty(conditions.Title))
+                recipes = recipes.Where(r => r.Title.Contains(conditions.Title));
+
+            return recipes;
+        }
+
         [TestMethod]
         public void Recipe_ConditionalSearchByTitleCategory()
         {
@@ -236,22 +255,7 @@ namespace Recipe.Test
             Assert.AreEqual(10, recipes.Count());
         }
 
-        private IQueryable<RecipeDal.Recipe> GetConditional(RecipeConditions conditions)
-        {
-            IQueryable<RecipeDal.Recipe> recipes = dc.Recipes;
-
-            if (conditions.Servings > 0)
-                recipes = recipes.Where(r => r.ServingQuantity == conditions.Servings);
-            if (!String.IsNullOrEmpty(conditions.IngredientName))
-                recipes = recipes.Where(r => r.Ingredients.Any(i => i.Description.Contains(conditions.IngredientName)));
-            if (!String.IsNullOrEmpty(conditions.Category))
-                recipes = recipes.Where(r => r.Categories.Any(c => c.Description == conditions.Category));
-            if (!string.IsNullOrEmpty(conditions.Title))
-                recipes = recipes.Where(r => r.Title.Contains(conditions.Title));
-
-            return recipes;
-        }
-
+    
         [TestMethod]
         public void Recipe_Paging()
         {

@@ -40,7 +40,7 @@ namespace RecipeDal
             // Don't use migrations. Just accept the structure and manage database schema manually.
             Database.SetInitializer<RecipeContext>(null);
 
-            context.Configuration.LazyLoadingEnabled = false;
+            //context.Configuration.LazyLoadingEnabled = false;
             context.CallingMethod = memberName;
             context.Database.Log = val => Trace.WriteLine(val);
             return context;
