@@ -24,11 +24,13 @@ IQueryable
 http://localhost:1720/api/Categories?$select=Description
 http://localhost:1720/api/Categories?$select=Description&$orderby=Description
 http://localhost:1720/Services/Recipes/GetRecipes?$filter=startswith(Title,'chocolate')
+
 http://docs.oasis-open.org/odata/odata/v4.0/os/part2-url-conventions/odata-v4.0-os-part2-url-conventions.html#_Toc372793790
 
 OdataQueryOptions
 http://localhost:1720/services/Directions/GetPagedDirections?$where=RecipeId%20eq%201
 http://localhost:1720/services/Directions/GetPagedDirections?$inlinecount=allpages&$top=5
+http://localhost:1720/Services/Recipes/GetRecipes?$filter=contains(Title,'chocolate') (OData 4)
 
 Children loading
 http://localhost:1720/api/Categories?$expand=Recipes

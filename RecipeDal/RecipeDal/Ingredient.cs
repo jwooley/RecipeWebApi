@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDal
 {
+    /// <summary>
+    /// CRUD operations for the Ingredient resource
+    /// </summary>
     public class Ingredient
     {
         // Properties

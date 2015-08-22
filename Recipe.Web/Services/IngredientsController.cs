@@ -14,11 +14,18 @@ using RecipeDal;
 
 namespace Recipe.Web.Services
 {
+    /// <summary>
+    /// CRUD operations for ingredients resource
+    /// </summary>
     public class IngredientsController : ApiController
     {
         private RecipeContext db = RecipeContext.ContextFactory();
 
         // GET: api/Ingredients
+        /// <summary>
+        /// Get the ingredients. Limit the results to max of 20 rows
+        /// </summary>
+        /// <returns></returns>
         [EnableQuery(MaxTop =20, PageSize =10)]
         public IQueryable<Ingredient> GetIngredients()
         {
