@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
-//using Newtonsoft.Json.Serialization;
 using Recipe.Web.Services;
 using System.Web.Http.Tracing;
 using RecipeDal;
@@ -18,7 +17,7 @@ namespace Recipe.Web
         {
 
             // Web API routes
-            
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -33,7 +32,7 @@ namespace Recipe.Web
                 defaults: new { id = RouteParameter.Optional });
 
             config.AddODataQueryFilter();
-            
+
             config.Services.Replace(typeof(ITraceWriter), new ServiceTracer());
             config.Formatters.Add(new SyndicationFeedFormatter());
 

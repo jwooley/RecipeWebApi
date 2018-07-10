@@ -46,12 +46,15 @@ namespace Recipe.Test
                     if (recipe.Categories.Any())
                         Trace.Write($"    Category: " + recipe.Categories.First().Description);
 
+                    if (recipe.Ingredients.Count > 0)
+                    {
                         foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
                         {
-                            Trace.Write(ingredient.Units);
-                            Trace.Write($" {ingredient.UnitType} ");
-                            Trace.WriteLine(ingredient.Units);
+                            Trace.Write(dc.Ingredients.FirstOrDefault(i => i.Recipe_RecipeId == recipe.RecipeId).Units);
+                            Trace.Write($" {dc.Ingredients.FirstOrDefault(i => i.Recipe_RecipeId == recipe.RecipeId).UnitType} ");
+                            Trace.WriteLine(dc.Ingredients.FirstOrDefault(i => i.Recipe_RecipeId == recipe.RecipeId).Units);
                         }
+                    }
 
                     foreach (var directionLine in recipe.Directions.OrderBy(d => d.LineNumber))
                     {
@@ -254,7 +257,7 @@ namespace Recipe.Test
             Assert.AreEqual(10, recipes.Count());
         }
 
-    
+
         [TestMethod]
         public void Recipe_Paging()
         {

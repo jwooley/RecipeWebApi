@@ -3,8 +3,8 @@
     [LineNumber]      BIGINT         NOT NULL,
     [Description]     NVARCHAR (MAX) NULL,
     [Recipe_RecipeId] BIGINT         NULL,
-    CONSTRAINT [PK_dbo.Directions] PRIMARY KEY CLUSTERED ([DirectionId] ASC),
-    CONSTRAINT [FK_dbo.Directions_dbo.Recipes_Recipe_RecipeId] FOREIGN KEY ([Recipe_RecipeId]) REFERENCES [dbo].[Recipes] ([RecipeId])
+    CONSTRAINT [PK_dbo.Directions] PRIMARY KEY NONCLUSTERED ([DirectionId] ASC),
+	CONSTRAINT [FK_dbo.Directions_dbo.Recipes_Recipe_RecipeId] FOREIGN KEY ([Recipe_RecipeId]) REFERENCES [dbo].[Recipes] ([RecipeId])
 );
 
 
@@ -28,3 +28,7 @@ GO
 CREATE STATISTICS [_dta_stat_709577566_4_2]
     ON [dbo].[Directions]([Recipe_RecipeId], [LineNumber]);
 
+
+GO
+
+CREATE CLUSTERED INDEX [IX_Directions_RecipeLineNumber] ON [dbo].[Directions] ([Recipe_RecipeId] , LineNumber)

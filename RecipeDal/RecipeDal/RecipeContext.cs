@@ -9,6 +9,7 @@ namespace RecipeDal
 {
     public class RecipeContext : DbContext
     {
+        #region config
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Recipe>()
@@ -40,11 +41,15 @@ namespace RecipeDal
             // Don't use migrations. Just accept the structure and manage database schema manually.
             Database.SetInitializer<RecipeContext>(null);
 
-            context.Configuration.LazyLoadingEnabled = false;
+            //context.Configuration.LazyLoadingEnabled = false;
             context.CallingMethod = memberName;
             context.Database.Log = val => Trace.WriteLine(val);
+            context.Configuration.AutoDetectChangesEnabled = false;
+            context.Configuration.UseDatabaseNullSemantics = true;
+
             return context;
         }
+        #endregion
 
         // DBSets
         public DbSet<Recipe> Recipes { get; set; }
@@ -55,8 +60,8 @@ namespace RecipeDal
 
         public async Task<IEnumerable<Recipe>> SearchRecipeAsync(string searchText)
         {
-            return await Database.SqlQuery<Recipe>("sRecipeSearch @searchText", 
-                new SqlParameter("searchText", searchText)).ToListAsync();
+            return await Database.SqlQuery<Recipe>("sRecipeSearch @searchText",
+                new SqlParameter(nameof(searchText), searchText)).ToListAsync();
         }
 
         /// <summary>
