@@ -50,9 +50,9 @@ namespace Recipe.Test
                     {
                         foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
                         {
-                            Trace.Write(dc.Ingredients.FirstOrDefault(i => i.Recipe_RecipeId == recipe.RecipeId).Units);
-                            Trace.Write($" {dc.Ingredients.FirstOrDefault(i => i.Recipe_RecipeId == recipe.RecipeId).UnitType} ");
-                            Trace.WriteLine(dc.Ingredients.FirstOrDefault(i => i.Recipe_RecipeId == recipe.RecipeId).Units);
+                            Trace.Write(dc.Ingredients.FirstOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
+                            Trace.Write($" {dc.Ingredients.FirstOrDefault(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
+                            Trace.WriteLine(dc.Ingredients.FirstOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
                         }
                     }
 
