@@ -9,19 +9,14 @@ namespace Recipe.Web.Areas.HelpPage
     {
         public InvalidSample(string errorMessage)
         {
-            if (errorMessage == null)
-            {
-                throw new ArgumentNullException("errorMessage");
-            }
-            ErrorMessage = errorMessage;
+            ErrorMessage = errorMessage ?? throw new ArgumentNullException("errorMessage");
         }
 
         public string ErrorMessage { get; private set; }
 
         public override bool Equals(object obj)
         {
-            InvalidSample other = obj as InvalidSample;
-            return other != null && ErrorMessage == other.ErrorMessage;
+            return obj is InvalidSample other && ErrorMessage == other.ErrorMessage;
         }
 
         public override int GetHashCode()

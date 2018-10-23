@@ -44,11 +44,17 @@ namespace Recipe.Web
         public override bool CanWriteType(Type type)
         {
             if ((TypeHelpers.IsSubclassOfRawGeneric(typeof(ISyndicationItemSerializable), type) || type.IsSubclassOf(typeof(IEnumerable<ISyndicationItemSerializable>))))
+            {
                 return true;
+            }
             else if (type.IsSubclassOf(typeof(XNode)))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
         /// <summary>
         /// The current implementation only supports writing. It does not read syndication feeds.
@@ -91,7 +97,9 @@ namespace Recipe.Web
                 return;
             }
             if (null == stream)
+            {
                 throw new ArgumentNullException("stream");
+            }
 
             List<SyndicationItem> items = new List<SyndicationItem>();
             var feed = new SyndicationFeed

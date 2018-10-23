@@ -339,9 +339,8 @@ namespace Recipe.Web.Areas.HelpPage
 
         private static object GenerateComplexObject(Type type, Dictionary<Type, object> createdObjectReferences)
         {
-            object result = null;
 
-            if (createdObjectReferences.TryGetValue(type, out result))
+            if (createdObjectReferences.TryGetValue(type, out object result))
             {
                 // The object has been created already, just return it. This will handle the circular reference case.
                 return result;
@@ -403,25 +402,25 @@ namespace Recipe.Web.Areas.HelpPage
             {
                 return new Dictionary<Type, Func<long, object>>
                 {
-                    { typeof(Boolean), index => true },
-                    { typeof(Byte), index => (Byte)64 },
-                    { typeof(Char), index => (Char)65 },
+                    { typeof(bool), index => true },
+                    { typeof(byte), index => (byte)64 },
+                    { typeof(char), index => (char)65 },
                     { typeof(DateTime), index => DateTime.Now },
                     { typeof(DateTimeOffset), index => new DateTimeOffset(DateTime.Now) },
                     { typeof(DBNull), index => DBNull.Value },
-                    { typeof(Decimal), index => (Decimal)index },
-                    { typeof(Double), index => (Double)(index + 0.1) },
+                    { typeof(decimal), index => (decimal)index },
+                    { typeof(double), index => (double)(index + 0.1) },
                     { typeof(Guid), index => Guid.NewGuid() },
-                    { typeof(Int16), index => (Int16)(index % Int16.MaxValue) },
-                    { typeof(Int32), index => (Int32)(index % Int32.MaxValue) },
-                    { typeof(Int64), index => (Int64)index },
-                    { typeof(Object), index => new object() },
-                    { typeof(SByte), index => (SByte)64 },
-                    { typeof(Single), index => (Single)(index + 0.1) },
+                    { typeof(short), index => (short)(index % short.MaxValue) },
+                    { typeof(int), index => (int)(index % int.MaxValue) },
+                    { typeof(long), index => (long)index },
+                    { typeof(object), index => new object() },
+                    { typeof(sbyte), index => (sbyte)64 },
+                    { typeof(float), index => (float)(index + 0.1) },
                     { 
-                        typeof(String), index =>
+                        typeof(string), index =>
                         {
-                            return String.Format(CultureInfo.CurrentCulture, "sample string {0}", index);
+                            return string.Format(CultureInfo.CurrentCulture, "sample string {0}", index);
                         }
                     },
                     { 
@@ -430,13 +429,13 @@ namespace Recipe.Web.Areas.HelpPage
                             return TimeSpan.FromTicks(1234567);
                         }
                     },
-                    { typeof(UInt16), index => (UInt16)(index % UInt16.MaxValue) },
-                    { typeof(UInt32), index => (UInt32)(index % UInt32.MaxValue) },
-                    { typeof(UInt64), index => (UInt64)index },
+                    { typeof(ushort), index => (ushort)(index % ushort.MaxValue) },
+                    { typeof(uint), index => (uint)(index % uint.MaxValue) },
+                    { typeof(ulong), index => (ulong)index },
                     { 
                         typeof(Uri), index =>
                         {
-                            return new Uri(String.Format(CultureInfo.CurrentCulture, "http://webapihelppage{0}.com", index));
+                            return new Uri(string.Format(CultureInfo.CurrentCulture, "http://webapihelppage{0}.com", index));
                         }
                     },
                 };

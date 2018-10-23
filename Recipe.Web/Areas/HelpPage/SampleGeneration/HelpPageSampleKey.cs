@@ -16,14 +16,9 @@ namespace Recipe.Web.Areas.HelpPage
         /// <param name="mediaType">The media type.</param>
         public HelpPageSampleKey(MediaTypeHeaderValue mediaType)
         {
-            if (mediaType == null)
-            {
-                throw new ArgumentNullException("mediaType");
-            }
-
-            ActionName = String.Empty;
-            ControllerName = String.Empty;
-            MediaType = mediaType;
+            ActionName = string.Empty;
+            ControllerName = string.Empty;
+            MediaType = mediaType ?? throw new ArgumentNullException("mediaType");
             ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
@@ -35,12 +30,7 @@ namespace Recipe.Web.Areas.HelpPage
         public HelpPageSampleKey(MediaTypeHeaderValue mediaType, Type type)
             : this(mediaType)
         {
-            if (type == null)
-            {
-                throw new ArgumentNullException("type");
-            }
-
-            ParameterType = type;
+            ParameterType = type ?? throw new ArgumentNullException("type");
         }
 
         /// <summary>
@@ -56,21 +46,14 @@ namespace Recipe.Web.Areas.HelpPage
             {
                 throw new InvalidEnumArgumentException("sampleDirection", (int)sampleDirection, typeof(SampleDirection));
             }
-            if (controllerName == null)
-            {
-                throw new ArgumentNullException("controllerName");
-            }
-            if (actionName == null)
-            {
-                throw new ArgumentNullException("actionName");
-            }
+
             if (parameterNames == null)
             {
                 throw new ArgumentNullException("parameterNames");
             }
 
-            ControllerName = controllerName;
-            ActionName = actionName;
+            ControllerName = controllerName ?? throw new ArgumentNullException("controllerName");
+            ActionName = actionName ?? throw new ArgumentNullException("actionName");
             ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
             SampleDirection = sampleDirection;
         }
@@ -86,12 +69,7 @@ namespace Recipe.Web.Areas.HelpPage
         public HelpPageSampleKey(MediaTypeHeaderValue mediaType, SampleDirection sampleDirection, string controllerName, string actionName, IEnumerable<string> parameterNames)
             : this(sampleDirection, controllerName, actionName, parameterNames)
         {
-            if (mediaType == null)
-            {
-                throw new ArgumentNullException("mediaType");
-            }
-
-            MediaType = mediaType;
+            MediaType = mediaType ?? throw new ArgumentNullException("mediaType");
         }
 
         /// <summary>
@@ -132,14 +110,13 @@ namespace Recipe.Web.Areas.HelpPage
 
         public override bool Equals(object obj)
         {
-            HelpPageSampleKey otherKey = obj as HelpPageSampleKey;
-            if (otherKey == null)
+            if (!(obj is HelpPageSampleKey otherKey))
             {
                 return false;
             }
 
-            return String.Equals(ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
-                String.Equals(ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
+            return string.Equals(ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
                 (MediaType == otherKey.MediaType || (MediaType != null && MediaType.Equals(otherKey.MediaType))) &&
                 ParameterType == otherKey.ParameterType &&
                 SampleDirection == otherKey.SampleDirection &&

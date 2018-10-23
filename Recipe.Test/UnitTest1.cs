@@ -43,17 +43,13 @@ namespace Recipe.Test
                 foreach (var recipe in category.Recipes)
                 {
                     Trace.WriteLine(recipe.Title);
-                    if (recipe.Categories.Any())
-                        Trace.Write($"    Category: " + recipe.Categories.First().Description);
+                    Trace.Write($"    Category: " + category.Description);
 
-                    if (recipe.Ingredients.Count > 0)
+                    foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
                     {
-                        foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
-                        {
-                            Trace.Write(dc.Ingredients.FirstOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
-                            Trace.Write($" {dc.Ingredients.FirstOrDefault(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
-                            Trace.WriteLine(dc.Ingredients.FirstOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
-                        }
+                        Trace.Write(ingredient.Units);
+                        Trace.Write($" {ingredient.UnitType} ");
+                        Trace.WriteLine(ingredient.Units);
                     }
 
                     foreach (var directionLine in recipe.Directions.OrderBy(d => d.LineNumber))
@@ -221,13 +217,24 @@ namespace Recipe.Test
             IQueryable<RecipeDal.Recipe> recipes = dc.Recipes;
 
             if (conditions.Servings > 0)
+            {
                 recipes = recipes.Where(r => r.ServingQuantity == conditions.Servings);
+            }
+
             if (!String.IsNullOrEmpty(conditions.IngredientName))
+            {
                 recipes = recipes.Where(r => r.Ingredients.Any(i => i.Description.Contains(conditions.IngredientName)));
+            }
+
             if (!String.IsNullOrEmpty(conditions.Category))
+            {
                 recipes = recipes.Where(r => r.Categories.Any(c => c.Description == conditions.Category));
+            }
+
             if (!string.IsNullOrEmpty(conditions.Title))
+            {
                 recipes = recipes.Where(r => r.Title.Contains(conditions.Title));
+            }
 
             return recipes;
         }

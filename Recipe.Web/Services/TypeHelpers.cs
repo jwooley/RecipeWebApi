@@ -40,10 +40,14 @@ namespace Recipe.Web
                     return true;
                 }
                 if (generic.IsAssignableFrom(toCheck))
+                {
                     return true;
+                }
 
                 if (toCheck.GetGenericArguments().Any())
+                {
                     return IsSubclassOfRawGeneric(generic, toCheck.GetGenericArguments()[0]);
+                }
 
                 toCheck = toCheck.BaseType;
             }

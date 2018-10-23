@@ -8,9 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
 using RecipeDal;
-using System.Web.OData;
-using System.Web.OData.Query;
 
 namespace Recipe.Web.Services
 {

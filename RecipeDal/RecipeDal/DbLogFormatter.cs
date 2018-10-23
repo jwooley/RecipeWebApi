@@ -26,7 +26,7 @@ namespace RecipeDal
             var context = interceptionContext.DbContexts.OfType<RecipeContext>().FirstOrDefault();
             if (context != null)
             {
-                Trace.WriteLine(context.CallingMethod + " Completed in " + Stopwatch.ElapsedMilliseconds.ToString());
+                Trace.WriteLine(context.CallingMethod + " Completed in " + GetStopwatch(interceptionContext).ElapsedMilliseconds.ToString());
             }
             base.LogResult<TResult>(command, interceptionContext);
         }
