@@ -43,13 +43,18 @@ namespace Recipe.Test
                 foreach (var recipe in category.Recipes)
                 {
                     Trace.WriteLine(recipe.Title);
-                    Trace.Write($"    Category: " + category.Description);
 
-                    foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
+                    if (recipe.Categories.Any())
+                        Trace.Write($"    Category: " + recipe.Categories.First().Description);
+
+                    if (recipe.Ingredients.Count > 0)
                     {
-                        Trace.Write(ingredient.Units);
-                        Trace.Write($" {ingredient.UnitType} ");
-                        Trace.WriteLine(ingredient.Units);
+                        foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
+                        {
+                            Trace.Write(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
+                            Trace.Write($" {dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
+                            Trace.WriteLine(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Description);
+                        }
                     }
 
                     foreach (var directionLine in recipe.Directions.OrderBy(d => d.LineNumber))
