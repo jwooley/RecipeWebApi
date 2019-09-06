@@ -35,32 +35,28 @@ namespace Recipe.Test
         [TestMethod]
         public void Recipe_BadCodePerformsPoorly()
         {
-            var Appetizers = from cat in dc.Categories
-                             where cat.Description == "Appetizers"
-                             select cat;
-            foreach (var category in Appetizers)
+            foreach (var recipe in dc.Recipes.Where(r => r.Title.Contains("Brownie")))
             {
-                foreach (var recipe in category.Recipes)
+                Trace.WriteLine(recipe.Title);
+
+                if (recipe.Categories.Any())
                 {
-                    Trace.WriteLine(recipe.Title);
+                    Trace.Write($"    Category: " + recipe.Categories.First().Description);
+                }
 
-                    if (recipe.Categories.Any())
-                        Trace.Write($"    Category: " + recipe.Categories.First().Description);
-
-                    if (recipe.Ingredients.Count > 0)
+                if (recipe.Ingredients.Count > 0)
+                {
+                    foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
                     {
-                        foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
-                        {
-                            Trace.Write(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
-                            Trace.Write($" {dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
-                            Trace.WriteLine(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Description);
-                        }
+                        Trace.Write(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
+                        Trace.Write($" {dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
+                        Trace.WriteLine(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Description);
                     }
+                }
 
-                    foreach (var directionLine in recipe.Directions.OrderBy(d => d.LineNumber))
-                    {
-                        Trace.WriteLine(directionLine.Description);
-                    }
+                foreach (var directionLine in recipe.Directions.OrderBy(d => d.LineNumber))
+                {
+                    Trace.WriteLine(directionLine.Description);
                 }
             }
         }
