@@ -143,7 +143,7 @@ namespace Recipe.Test
         {
             var brownies = await (from r in dc.Recipes
                                   where r.Title.Contains("Brownie")
-                                  select new RecipeDto { Title = r.Title, Id = r.RecipeId })
+                                  select new RecipeDto { Title = r.Title, Id = r.Id })
                            .ToListAsync();
 
             await Task.WhenAll(SetIngredientsAsync(brownies), SetDirectionsAsync(brownies));
@@ -162,7 +162,7 @@ namespace Recipe.Test
 
                 foreach (var i in ingredients)
                 {
-                    var recipe = recipes.First(r => r.Id == i.Recipe_RecipeId);
+                    var recipe = recipes.First(r => r.Id == i.RecipeId);
                     recipe.Ingredients.Add(i);
                 }
             }
@@ -178,7 +178,7 @@ namespace Recipe.Test
                                         select d).ToListAsync();
                 foreach (var d in directions)
                 {
-                    var recipe = recipes.First(r => r.Id == d.Recipe_RecipeId);
+                    var recipe = recipes.First(r => r.Id == d.RecipeId);
                     recipe.Directions.Add(d.Description);
                 }
             }
@@ -187,30 +187,30 @@ namespace Recipe.Test
         [TestMethod]
         public void FirstSingle()
         {
-            var recipeId = dc.Recipes.First().RecipeId;
+            var recipeId = dc.Recipes.First().Id;
 
-            var recipe1 = dc.Recipes.First(r => r.RecipeId == recipeId);
-            var recipe2 = dc.Recipes.FirstOrDefault(r => r.RecipeId == recipeId);
-            var recipe3 = dc.Recipes.Single(r => r.RecipeId == recipeId);
-            var recipe4 = dc.Recipes.SingleOrDefault(r => r.RecipeId == recipeId);
+            var recipe1 = dc.Recipes.First(r => r.Id == recipeId);
+            var recipe2 = dc.Recipes.FirstOrDefault(r => r.Id == recipeId);
+            var recipe3 = dc.Recipes.Single(r => r.Id == recipeId);
+            var recipe4 = dc.Recipes.SingleOrDefault(r => r.Id == recipeId);
 
-            var recipe5 = dc.Recipes.Where(r => r.RecipeId == recipeId).First();
+            var recipe5 = dc.Recipes.Where(r => r.Id == recipeId).First();
 
             Trace.WriteLine("Fetch from cache");
             var recipeCached = dc.Recipes.Find(recipeId);
             Assert.IsNotNull(recipeCached);
             Trace.WriteLine("Fetch from Local");
-            var cachedAgain = dc.Recipes.Local.FirstOrDefault(r => r.RecipeId == recipeId);
+            var cachedAgain = dc.Recipes.Local.FirstOrDefault(r => r.Id == recipeId);
             Assert.IsNotNull(cachedAgain);
         }
 
         [TestMethod]
         public void Recipe_LocalFetchesObjectsNotInDatabase()
         {
-            var fakeRecipe = new RecipeDal.Recipe { RecipeId = -9999, Title = "NotInDatabase" };
+            var fakeRecipe = new RecipeDal.Recipe { Id = -9999, Title = "NotInDatabase" };
             dc.Recipes.Add(fakeRecipe);
             var found = dc.Recipes.Local.First(r => r.Title == "NotInDatabase");
-            Assert.AreEqual(-9999, found.RecipeId);
+            Assert.AreEqual(-9999, found.Id);
         }
 
         private IQueryable<RecipeDal.Recipe> GetConditional(RecipeConditions conditions)
@@ -270,7 +270,7 @@ namespace Recipe.Test
         public void Recipe_Paging()
         {
             // Orderby is required by EF. WebAPI orders by all columns if not specified.
-            var recipes = dc.Recipes.OrderBy(r => r.RecipeId).Skip(10).Take(10);
+            var recipes = dc.Recipes.OrderBy(r => r.Id).Skip(10).Take(10);
             Assert.AreEqual(10, recipes.Count());
         }
 

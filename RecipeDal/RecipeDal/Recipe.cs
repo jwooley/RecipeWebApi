@@ -3,10 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDal
 {
+    [Table("Recipe")]
     public class Recipe
     {
         // properties
-        public long RecipeId { get; set; }
+        [Column("Id")]
+        public long Id { get; set; }
         public string Title { get; set; }
         public decimal? ServingQuantity { get; set; }
         public string ServingMeasure { get; set; }

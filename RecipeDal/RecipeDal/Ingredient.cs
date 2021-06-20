@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDal
 {
+    [Table("Ingredient")]
     /// <summary>
     /// CRUD operations for the Ingredient resource
     /// </summary>
     public class Ingredient
     {
-        // Properties
+        [Column("Id")]
         public long IngredientId { get; set; }
         public int? SortOrder { get; set; }
         [MaxLength(50)]
@@ -18,12 +19,10 @@ namespace RecipeDal
         [MaxLength(50)]
         public string Description { get; set; }
 
-        public long Recipe_RecipeId { get; set; }
+        public long RecipeId { get; set; }
 
-        [ForeignKey("Recipe_RecipeId")]
+        [ForeignKey("RecipeId")]
         public Recipe Recipe { get; set; }
-        // Parent
-        //public Recipe Recipe { get; set; }
         
     }
 }

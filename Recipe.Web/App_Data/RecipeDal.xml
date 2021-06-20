@@ -4,11 +4,6 @@
         <name>RecipeDal</name>
     </assembly>
     <members>
-        <member name="T:RecipeDal.Ingredient">
-            <summary>
-            CRUD operations for the Ingredient resource
-            </summary>
-        </member>
         <member name="P:RecipeDal.RecipeContext.CallingMethod">
             <summary>
             Name of the method that created the request.

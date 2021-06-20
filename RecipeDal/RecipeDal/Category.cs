@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDal
 {
+    [Table("Category")]
     public class Category
     {
+        [Column("Id")]
         // Properties
         public long CategoryId { get; set; }
         [StringLength(50)]

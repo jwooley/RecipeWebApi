@@ -17,9 +17,9 @@ namespace RecipeDal
                 .WithMany(c => c.Recipes)
                 .Map(m =>
                 {
-                    m.MapLeftKey("Recipe_RecipeId");
-                    m.MapRightKey("Category_CategoryId");
-                    m.ToTable("RecipeCategories");
+                    m.MapLeftKey("RecipeId");
+                    m.MapRightKey("CategoryId");
+                    m.ToTable("RecipeCategory");
                 });
 
             base.OnModelCreating(modelBuilder);
