@@ -182,7 +182,6 @@ namespace Recipe.Test
         [Theory]
         [InlineData("abc", "abc")]
         [InlineData("1.5.5", "1.5.5")]
-        [InlineData("1,5", "1,5")]  // Depends on culture, might parse in some cultures
         [InlineData("", "")]
         [InlineData("1/2", "1/2")]  // Already a fraction string
         public void ToFractionString_InvalidDecimalStrings_ReturnsOriginalString(string value, string expected)

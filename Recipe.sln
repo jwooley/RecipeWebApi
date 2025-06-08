@@ -7,13 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeDal", "RecipeDal\Reci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe.Web", "Recipe.Web\Recipe.Web.csproj", "{BE4F0A58-14F2-4A5C-BF60-9EC19966C743}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E169F503-FA10-40AF-9AE8-FB4E0DC46579}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19FB2044-AD0B-48C2-9D7D-EB03CF146C13}"
 	ProjectSection(SolutionItems) = preProject
 		Demos.txt = Demos.txt
