@@ -1,38 +1,35 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RecipeDal;
-using System.Linq;
-using System.Diagnostics;
+﻿using RecipeDal;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace Recipe.Test
 {
-    [TestClass]
     public class RecipeTests
     {
         RecipeContext dc;
+        ITestOutputHelper Trace;
 
-        [TestInitialize]
-        public void Init()
+        public RecipeTests(ITestOutputHelper outputHelper)
         {
             Database.SetInitializer<RecipeContext>(null);
             dc = RecipeContext.ContextFactory();
+            Trace = outputHelper;
         }
-        [TestCleanup]
-        public void Teardown()
-        {
-            dc.Dispose();
-        }
-        [TestMethod]
+
+        [Fact]
         public void Baseline()
         {
             // Force execution before tests to remove first use penalty.
             var recipe = dc.Recipes.First();
             Trace.WriteLine(recipe.Title);
         }
-        [TestMethod]
+
+        //[Fact]
         public void Recipe_BadCodePerformsPoorly()
         {
             foreach (var recipe in dc.Recipes.Where(r => r.Title.Contains("Brownie")))
@@ -41,15 +38,15 @@ namespace Recipe.Test
 
                 if (recipe.Categories.Any())
                 {
-                    Trace.Write($"    Category: " + recipe.Categories.First().Description);
+                    Trace.WriteLine($"    Category: " + recipe.Categories.First().Description);
                 }
 
                 if (recipe.Ingredients.Count > 0)
                 {
                     foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
                     {
-                        Trace.Write(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
-                        Trace.Write($" {dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
+                        Trace.WriteLine(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Units);
+                        Trace.WriteLine($" {dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).UnitType} ");
                         Trace.WriteLine(dc.Ingredients.SingleOrDefault(i => i.IngredientId == ingredient.IngredientId).Description);
                     }
                 }
@@ -61,7 +58,7 @@ namespace Recipe.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void Recipe_EagerLoading()
         {
             var brownies = from r in dc.Recipes
@@ -74,7 +71,7 @@ namespace Recipe.Test
             foreach (var recipe in brownies.ToList())
             {
                 Trace.WriteLine(recipe.Title);
-                Trace.Write($"    Category: " + recipe.Categories.FirstOrDefault()?.Description);
+                Trace.WriteLine($"    Category: " + recipe.Categories.FirstOrDefault()?.Description);
 
                 foreach (var ingredient in recipe.Ingredients.OrderBy(i => i.SortOrder))
                 {
@@ -88,7 +85,7 @@ namespace Recipe.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void Recipe_Projections()
         {
             var brownies = from r in dc.Recipes
@@ -104,7 +101,7 @@ namespace Recipe.Test
             foreach (var recipe in brownies.ToList())
             {
                 Trace.WriteLine(recipe.Title);
-                Trace.Write($"    Category: " + recipe.Category);
+                Trace.WriteLine($"    Category: " + recipe.Category);
 
                 foreach (var ingredient in recipe.Ingredients)
                 {
@@ -117,7 +114,7 @@ namespace Recipe.Test
                 }
             }
         }
-        [TestMethod]
+        [Fact]
         public async Task Recipe_AsyncLoad()
         {
             var brownies = await GetRecipesAsync();
@@ -125,7 +122,7 @@ namespace Recipe.Test
             foreach (var recipe in brownies)
             {
                 Trace.WriteLine(recipe.Title);
-                Trace.Write($"    Category: " + recipe.Category);
+                Trace.WriteLine($"    Category: " + recipe.Category);
 
                 foreach (var ingredient in recipe.Ingredients)
                 {
@@ -184,7 +181,7 @@ namespace Recipe.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void FirstSingle()
         {
             var recipeId = dc.Recipes.First().Id;
@@ -198,19 +195,19 @@ namespace Recipe.Test
 
             Trace.WriteLine("Fetch from cache");
             var recipeCached = dc.Recipes.Find(recipeId);
-            Assert.IsNotNull(recipeCached);
+            Assert.NotNull(recipeCached);
             Trace.WriteLine("Fetch from Local");
             var cachedAgain = dc.Recipes.Local.FirstOrDefault(r => r.Id == recipeId);
-            Assert.IsNotNull(cachedAgain);
+            Assert.NotNull(cachedAgain);
         }
 
-        [TestMethod]
+        [Fact]
         public void Recipe_LocalFetchesObjectsNotInDatabase()
         {
             var fakeRecipe = new RecipeDal.Recipe { Id = -9999, Title = "NotInDatabase" };
             dc.Recipes.Add(fakeRecipe);
             var found = dc.Recipes.Local.First(r => r.Title == "NotInDatabase");
-            Assert.AreEqual(-9999, found.Id);
+            Assert.Equal(-9999, found.Id);
         }
 
         private IQueryable<RecipeDal.Recipe> GetConditional(RecipeConditions conditions)
@@ -240,41 +237,41 @@ namespace Recipe.Test
             return recipes;
         }
 
-        [TestMethod]
+        [Fact]
         public void Recipe_ConditionalSearchByTitleCategory()
         {
             var conditions = new RecipeConditions { Title = "Dip", Category = "Appetizers" };
             var recipes = GetConditional(conditions)
                 .Take(10);
-            Assert.AreEqual(10, recipes.Count());
+            Assert.Equal(10, recipes.Count());
         }
-        [TestMethod]
+        [Fact]
         public void Recipe_ConditionalSearcyByIngredientServings()
         {
             var conditions = new RecipeConditions { IngredientName = "Chocolate", Servings = 8 };
             var recipes = GetConditional(conditions)
                 .Take(10);
-            Assert.AreEqual(10, recipes.Count());
+            Assert.Equal(10, recipes.Count());
         }
-        [TestMethod]
+        [Fact]
         public void Recipe_ConditionalSearchByTitle()
         {
             var conditions = new RecipeConditions { Title = "Brownie" };
             var recipes = GetConditional(conditions)
                 .Take(10);
-            Assert.AreEqual(10, recipes.Count());
+            Assert.Equal(10, recipes.Count());
         }
 
 
-        [TestMethod]
+        [Fact]
         public void Recipe_Paging()
         {
             // Orderby is required by EF. WebAPI orders by all columns if not specified.
             var recipes = dc.Recipes.OrderBy(r => r.Id).Skip(10).Take(10);
-            Assert.AreEqual(10, recipes.Count());
+            Assert.Equal(10, recipes.Count());
         }
 
-        [TestMethod]
+        [Fact]
         public void Recipe_ContainsList()
         {
             string[] targetCategories = { "Cheese/eggs", "Chocolate", "Children" };
@@ -283,10 +280,10 @@ namespace Recipe.Test
                            where targetCategories.Contains(category.Description)
                            select recipe).ToList();
 
-            Assert.IsTrue(recipes.Any());
+            Assert.True(recipes.Any());
         }
 
-        [TestMethod]
+        [Fact]
         public void Recipe_ComposingSets()
         {
             var targetCategories = dc.Categories.Where(c => c.Description.StartsWith("ch"));
@@ -297,13 +294,13 @@ namespace Recipe.Test
                           from category in recipe.Categories
                           join tCat in targetCategories on category.CategoryId equals tCat.CategoryId
                           select recipe;
-            Assert.AreEqual(10, results.Take(10).Count());
+            Assert.Equal(10, results.Take(10).Count());
         }
 
-        [TestMethod]
+        [Fact]
         public void Recipe_ManyToOnePoor()
         {
-            var sw = new Stopwatch();
+            var sw = new System.Diagnostics.Stopwatch();
             sw.Start();
             var chocolates = (from i in dc.Ingredients
                               where i.Description.StartsWith("Chocolate")
@@ -346,11 +343,11 @@ namespace Recipe.Test
             Trace.WriteLine($"Inverted fetched {better.Count()} rows in {sw.ElapsedTicks} ticks");
         }
 
-        [TestMethod]
+        [Fact]
         public async Task Recipe_SearchWithStoredProc()
         {
             var chocolates = await dc.SearchRecipeAsync("Chocolate");
-            Assert.IsTrue(chocolates.Any());
+            Assert.True(chocolates.Any());
         }
     }
 }

@@ -13,7 +13,7 @@ namespace RecipeDal
         public long IngredientId { get; set; }
         public int? SortOrder { get; set; }
         [MaxLength(50)]
-        public string Units { get;set; }
+        public string Units { get; set; }
         [MaxLength(50)]
         public string UnitType { get; set; }
         [MaxLength(50)]
@@ -23,6 +23,6 @@ namespace RecipeDal
 
         [ForeignKey("RecipeId")]
         public Recipe Recipe { get; set; }
-        
+
     }
 }

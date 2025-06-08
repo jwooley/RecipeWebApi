@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Microsoft.AspNet.OData;
+using RecipeDal;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Microsoft.AspNet.OData;
-using RecipeDal;
 
 namespace Recipe.Web.Services
 {
@@ -26,7 +22,7 @@ namespace Recipe.Web.Services
         /// Get the ingredients. Limit the results to max of 20 rows
         /// </summary>
         /// <returns></returns>
-        [EnableQuery(MaxTop =20, PageSize =10)]
+        [EnableQuery(MaxTop = 20, PageSize = 10)]
         public IQueryable<Ingredient> GetIngredients()
         {
             return db.Ingredients;

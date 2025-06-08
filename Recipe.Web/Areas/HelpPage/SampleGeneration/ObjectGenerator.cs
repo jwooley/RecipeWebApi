@@ -417,13 +417,13 @@ namespace Recipe.Web.Areas.HelpPage
                     { typeof(object), index => new object() },
                     { typeof(sbyte), index => (sbyte)64 },
                     { typeof(float), index => (float)(index + 0.1) },
-                    { 
+                    {
                         typeof(string), index =>
                         {
                             return string.Format(CultureInfo.CurrentCulture, "sample string {0}", index);
                         }
                     },
-                    { 
+                    {
                         typeof(TimeSpan), index =>
                         {
                             return TimeSpan.FromTicks(1234567);
@@ -432,7 +432,7 @@ namespace Recipe.Web.Areas.HelpPage
                     { typeof(ushort), index => (ushort)(index % ushort.MaxValue) },
                     { typeof(uint), index => (uint)(index % uint.MaxValue) },
                     { typeof(ulong), index => (ulong)index },
-                    { 
+                    {
                         typeof(Uri), index =>
                         {
                             return new Uri(string.Format(CultureInfo.CurrentCulture, "http://webapihelppage{0}.com", index));

@@ -1,8 +1,6 @@
-using System;
+using Recipe.Web.Areas.HelpPage.Models;
 using System.Web.Http;
 using System.Web.Mvc;
-using Recipe.Web.Areas.HelpPage.ModelDescriptions;
-using Recipe.Web.Areas.HelpPage.Models;
 
 namespace Recipe.Web.Areas.HelpPage.Controllers
 {

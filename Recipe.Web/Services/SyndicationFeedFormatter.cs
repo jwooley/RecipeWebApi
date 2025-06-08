@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
@@ -121,7 +120,7 @@ namespace Recipe.Web
             var xModels = models as XElement;
             if (models != null)
             {
-                foreach(var child in xModels.Elements() )
+                foreach (var child in xModels.Elements())
                 {
                     var item = new SyndicationItem();
                     foreach (var node in child.Elements())
