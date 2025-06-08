@@ -5,7 +5,7 @@ namespace Recipe.Test
 {
     public class SqlTraceListener : TraceListener
     {
-        private RecipeContext context = new RecipeContext();
+        private RecipeContext context = RecipeContext.ContextFactory();
 
         protected override void Dispose(bool disposing)
         {

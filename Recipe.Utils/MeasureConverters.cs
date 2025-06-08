@@ -81,7 +81,7 @@ namespace Recipe.Utils
             // Normalize unit abbreviations
             sourceUnit = NormalizeUnitAbbreviation(sourceUnit);
             targetUnit = NormalizeUnitAbbreviation(targetUnit);
-            
+
             return sourceUnit switch
             {
                 "oz" when targetUnit == "g" => OuncesToGrams(value),
@@ -120,7 +120,7 @@ namespace Recipe.Utils
             null => string.Empty,
             _ => unit.ToLower()    // Return the original unit if no normalization needed
         };
-        
+
         /// <summary>
         /// The conversion factor from ounces to grams (1 oz = 28.349523125 g)
         /// </summary>

@@ -1,7 +1,6 @@
 using Recipe.Utils;
 using System;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Recipe.Test
 {
@@ -30,7 +29,7 @@ namespace Recipe.Test
         {
             // Act
             string actual = value.ToFractionString();
-            
+
             // Assert
             _output.WriteLine($"Converting {value} to fraction string: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -47,7 +46,7 @@ namespace Recipe.Test
         {
             // Act
             string actual = value.ToFractionString(precision);
-            
+
             // Assert
             _output.WriteLine($"Converting {value} to fraction string with precision {precision}: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -65,7 +64,7 @@ namespace Recipe.Test
         {
             // Act
             string actual = value.ToFractionString();
-            
+
             // Assert
             _output.WriteLine($"Converting {value} to fraction string: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -81,7 +80,7 @@ namespace Recipe.Test
         {
             // Act
             string actual = value.ToFractionString(precision);
-            
+
             // Assert
             _output.WriteLine($"Converting {value} to fraction string with precision {precision}: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -93,10 +92,10 @@ namespace Recipe.Test
             // Arrange
             decimal value = 1.5m;
             int precision = -1;
-            
+
             // Act & Assert
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => value.ToFractionString(precision));
-            
+
             _output.WriteLine($"Exception message: {exception.Message}");
             Assert.Equal("precision", exception.ParamName);
             Assert.Contains("Precision must be non-negative", exception.Message);
@@ -109,7 +108,7 @@ namespace Recipe.Test
         //{
         //    // Act
         //    string actual = value.ToFractionString(precision);
-            
+
         //    // Assert
         //    _output.WriteLine($"Converting {value} to fraction string with precision {precision}: Expected '{expected}', got '{actual}'");
         //    Assert.Equal(expected, actual);
@@ -125,7 +124,7 @@ namespace Recipe.Test
         {
             // Act
             string actual = value.ToFractionString();
-            
+
             // Assert
             _output.WriteLine($"Converting {value} to fraction string: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -139,7 +138,7 @@ namespace Recipe.Test
         {
             // Act
             string actual = value.ToFractionString();
-            
+
             // Assert
             _output.WriteLine($"Converting {value} to fraction string: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -154,7 +153,7 @@ namespace Recipe.Test
         {
             // Act
             string actual = value.ToFractionString();
-            
+
             // Assert
             _output.WriteLine($"Converting {value} to fraction string: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -173,7 +172,7 @@ namespace Recipe.Test
         {
             // Act
             string actual = value.ToFractionString();
-            
+
             // Assert
             _output.WriteLine($"Converting string '{value}' to fraction string: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -182,14 +181,14 @@ namespace Recipe.Test
         [Theory]
         [InlineData("abc", "abc")]
         [InlineData("1.5.5", "1.5.5")]
-        [InlineData("1,5", "1,5")]  // Depends on culture, might parse in some cultures
+        //[InlineData("1,5", "1,5")]  // Depends on culture, might parse in some cultures
         [InlineData("", "")]
         [InlineData("1/2", "1/2")]  // Already a fraction string
         public void ToFractionString_InvalidDecimalStrings_ReturnsOriginalString(string value, string expected)
         {
             // Act
             string actual = value.ToFractionString();
-            
+
             // Assert
             _output.WriteLine($"Converting invalid string '{value}' to fraction string: Expected '{expected}', got '{actual}'");
             Assert.Equal(expected, actual);
@@ -200,10 +199,10 @@ namespace Recipe.Test
         {
             // Arrange
             string value = null;
-            
+
             // Act
             string actual = value.ToFractionString();
-            
+
             // Assert
             _output.WriteLine($"Converting null string to fraction string");
             Assert.Null(actual);
