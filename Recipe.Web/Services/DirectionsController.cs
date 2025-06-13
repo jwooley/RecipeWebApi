@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
+using RecipeDal;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
-using RecipeDal;
 
 namespace Recipe.Web.Services
 {
@@ -119,11 +116,11 @@ namespace Recipe.Web.Services
 
         [HttpGet]
         public IQueryable<Direction> GetDirectionsForRecipe(long id)
-            {
+        {
             return db.Directions
-                .Where(d => d.Recipe.RecipeId == id)
-                .OrderBy(d => d.LineNumber); 
-            }
+                .Where(d => d.Recipe.Id == id)
+                .OrderBy(d => d.LineNumber);
+        }
 
         [HttpGet]
         public PageResult GetPagedDirections(ODataQueryOptions<Direction> options)

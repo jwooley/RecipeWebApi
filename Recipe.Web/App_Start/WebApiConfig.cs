@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
-using Microsoft.Owin.Security.OAuth;
-using Recipe.Web.Services;
-using System.Web.Http.Tracing;
-using RecipeDal;
-using Microsoft.AspNet.OData.Extensions;
-using System.Web.Http.ExceptionHandling;
+﻿using Microsoft.AspNet.OData.Extensions;
 using Newtonsoft.Json.Serialization;
+using Recipe.Web.Services;
+using RecipeDal;
+using System.Linq;
+using System.Web.Http;
 
 namespace Recipe.Web
 {

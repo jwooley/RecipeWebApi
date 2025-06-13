@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Interception;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeDal
 {
     public class DbLogFormatter : DatabaseLogFormatter
     {
 
-        public DbLogFormatter(DbContext context, Action<string> writeAction) 
-            : base( context, writeAction) {}
+        public DbLogFormatter(DbContext context, Action<string> writeAction)
+            : base(context, writeAction) { }
 
         public override void LogCommand<TResult>(DbCommand command, DbCommandInterceptionContext<TResult> interceptionContext)
         {

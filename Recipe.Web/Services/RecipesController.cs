@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
+using Recipe.Web.Services.DTO;
+using RecipeDal;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using RecipeDal;
-using Recipe.Web.Services.DTO;
-using System.Threading.Tasks;
-using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
 
 namespace Recipe.Web.Services
 {
@@ -39,7 +37,7 @@ namespace Recipe.Web.Services
             var recipe = db.Recipes
                 .Include(r => r.Directions)
                 .Include(r => r.Ingredients)
-                .FirstOrDefault(r => r.RecipeId == id);
+                .FirstOrDefault(r => r.Id == id);
             if (recipe == null)
             {
                 return NotFound();
@@ -57,7 +55,7 @@ namespace Recipe.Web.Services
                 return BadRequest(ModelState);
             }
 
-            if (id != recipe.RecipeId)
+            if (id != recipe.Id)
             {
                 return BadRequest();
             }
@@ -95,7 +93,7 @@ namespace Recipe.Web.Services
             db.Recipes.Add(recipe);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = recipe.RecipeId }, recipe);
+            return CreatedAtRoute("DefaultApi", new { id = recipe.Id }, recipe);
         }
 
         // DELETE: api/Recipes/5
@@ -125,7 +123,7 @@ namespace Recipe.Web.Services
 
         private bool RecipeExists(long id)
         {
-            return db.Recipes.Count(e => e.RecipeId == id) > 0;
+            return db.Recipes.Count(e => e.Id == id) > 0;
         }
 
         [HttpGet]
@@ -139,17 +137,17 @@ namespace Recipe.Web.Services
         /// This is an example of a custom attribute controller. This fetches the child
         /// records from a parent Id
         /// </summary>
-        /// <param name="recipeId">Recipe ID. Notice the naming does not agree with
+        /// <param name="Id">Recipe ID. Notice the naming does not agree with
         /// the standard or controller/action routes.</param>
         /// <returns></returns>
-        [Route("api/Recipe/{recipeId}/Ingredients")]
-        public IEnumerable<Ingredient> GetRecipeIngredients(long recipeId)
+        [Route("api/Recipe/{Id}/Ingredients")]
+        public IEnumerable<Ingredient> GetRecipeIngredients(long Id)
         {
             var results = from r in db.Recipes
-                          where r.RecipeId == recipeId
+                          where r.Id == Id
                           from i in r.Ingredients
                           select i;
-            
+
             return results;
         }
 
@@ -164,15 +162,15 @@ namespace Recipe.Web.Services
         {
             var recipes = db.Recipes
                 .Select(r => new RecipeDto
-            {
-                Id = r.RecipeId,
-                Title = r.Title,
-                Servings = r.ServingQuantity,
-                ServingMeasure = r.ServingMeasure,
-                Ingredients = r.Ingredients.OrderBy(i => i.SortOrder).Select(i => new IngredientDto { Decription = i.Description, Amount = i.Units, AmountType = i.UnitType }),
-                Directions = r.Directions.OrderBy(d => d.LineNumber).Select(d => d.Description),
-                Categories = r.Categories.Select(c => c.Description)
-            });
+                {
+                    Id = r.Id,
+                    Title = r.Title,
+                    Servings = r.ServingQuantity,
+                    ServingMeasure = r.ServingMeasure,
+                    Ingredients = r.Ingredients.OrderBy(i => i.SortOrder).Select(i => new IngredientDto { Decription = i.Description, Amount = i.Units, AmountType = i.UnitType }),
+                    Directions = r.Directions.OrderBy(d => d.LineNumber).Select(d => d.Description),
+                    Categories = r.Categories.Select(c => c.Description)
+                });
 
             return recipes;
         }
@@ -197,10 +195,10 @@ namespace Recipe.Web.Services
         public async Task<RecipeDto> RecipeByIdAsync(long id)
         {
             var recipe = await db.Recipes
-                .Where(r => r.RecipeId == id)
+                .Where(r => r.Id == id)
                 .Select(r => new RecipeDto
                 {
-                    Id = r.RecipeId,
+                    Id = r.Id,
                     Title = r.Title,
                     Servings = r.ServingQuantity,
                     ServingMeasure = r.ServingMeasure,
@@ -219,21 +217,21 @@ namespace Recipe.Web.Services
         {
             using (var dc = RecipeContext.ContextFactory())
             {
-                recipe.Ingredients = await 
+                recipe.Ingredients = await
                     (from r in dc.Recipes
-                     where r.RecipeId == recipe.Id
+                     where r.Id == recipe.Id
                      from i in r.Ingredients
                      orderby i.SortOrder
                      select new IngredientDto { Decription = i.Description, Amount = i.Units, AmountType = i.UnitType })
                     .ToListAsync();
-            }  
+            }
         }
         private async Task SetDirections(RecipeDto recipe)
         {
             using (var dc = RecipeContext.ContextFactory())
             {
                 recipe.Directions = await dc.Directions
-                .Where(d => d.Recipe.RecipeId == recipe.Id)
+                .Where(d => d.Recipe.Id == recipe.Id)
                 .OrderBy(d => d.LineNumber)
                 .Select(d => d.Description)
                 .ToListAsync();
@@ -244,7 +242,7 @@ namespace Recipe.Web.Services
             using (var dc = RecipeContext.ContextFactory())
             {
                 recipe.Categories = await dc.Categories
-                .Where(c => c.Recipes.Any(r => r.RecipeId == recipe.Id))
+                .Where(c => c.Recipes.Any(r => r.Id == recipe.Id))
                 .Select(c => c.Description)
                 .ToListAsync();
             }
