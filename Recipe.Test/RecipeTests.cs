@@ -1,7 +1,7 @@
-﻿using RecipeDal;
+﻿using Microsoft.EntityFrameworkCore;
+using RecipeDal;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -16,7 +16,6 @@ namespace Recipe.Test
 
         public RecipeTests(ITestOutputHelper outputHelper)
         {
-            Database.SetInitializer<RecipeContext>(null);
             dc = RecipeContext.ContextFactory();
             Trace = outputHelper;
         }
@@ -94,8 +93,8 @@ namespace Recipe.Test
                            {
                                r.Title,
                                Category = r.Categories.FirstOrDefault().Description,
-                               Ingredients = r.Ingredients.OrderBy(i => i.SortOrder),
-                               Directions = r.Directions.OrderBy(d => d.LineNumber).Select(d => d.Description)
+                               Ingredients = r.Ingredients.OrderBy(i => i.SortOrder).ToList(),
+                               Directions = r.Directions.OrderBy(d => d.LineNumber).Select(d => d.Description).ToList()
                            };
 
             foreach (var recipe in brownies.ToList())

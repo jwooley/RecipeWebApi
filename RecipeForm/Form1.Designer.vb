@@ -22,350 +22,331 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.dgSearchResults = New System.Windows.Forms.DataGridView()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RecipeList = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.dgIngredient = New System.Windows.Forms.DataGridView()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtDirections = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtCategories = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtMeasure = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtQuantity = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtName = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.bsIngredient = New System.Windows.Forms.BindingSource(Me.components)
-        Me.UnitsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UnitTypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.dgSearchResults, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RecipeList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer2.Panel1.SuspendLayout()
-        Me.SplitContainer2.Panel2.SuspendLayout()
-        Me.SplitContainer2.SuspendLayout()
-        CType(Me.dgIngredient, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.bsIngredient, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(10, 11)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Search"
-        '
-        'txtSearch
-        '
-        Me.txtSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSearch.Location = New System.Drawing.Point(58, 8)
-        Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(964, 20)
-        Me.txtSearch.TabIndex = 1
-        '
-        'btnSearch
-        '
-        Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSearch.Location = New System.Drawing.Point(1026, 6)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(25, 21)
-        Me.btnSearch.TabIndex = 2
-        Me.btnSearch.Text = "Button1"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'dgSearchResults
-        '
-        Me.dgSearchResults.AllowUserToAddRows = False
-        Me.dgSearchResults.AllowUserToDeleteRows = False
-        Me.dgSearchResults.AutoGenerateColumns = False
-        Me.dgSearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgSearchResults.ColumnHeadersVisible = False
-        Me.dgSearchResults.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.TitleDataGridViewTextBoxColumn})
-        Me.dgSearchResults.DataSource = Me.RecipeList
-        Me.dgSearchResults.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgSearchResults.Location = New System.Drawing.Point(0, 0)
-        Me.dgSearchResults.Margin = New System.Windows.Forms.Padding(2)
-        Me.dgSearchResults.Name = "dgSearchResults"
-        Me.dgSearchResults.ReadOnly = True
-        Me.dgSearchResults.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.dgSearchResults.RowHeadersVisible = False
-        Me.dgSearchResults.RowHeadersWidth = 51
-        Me.dgSearchResults.RowTemplate.Height = 24
-        Me.dgSearchResults.Size = New System.Drawing.Size(348, 470)
-        Me.dgSearchResults.TabIndex = 3
-        '
-        'IdDataGridViewTextBoxColumn
-        '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
-        Me.IdDataGridViewTextBoxColumn.Visible = False
-        '
-        'TitleDataGridViewTextBoxColumn
-        '
-        Me.TitleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.TitleDataGridViewTextBoxColumn.DataPropertyName = "Title"
-        Me.TitleDataGridViewTextBoxColumn.HeaderText = "Title"
-        Me.TitleDataGridViewTextBoxColumn.Name = "TitleDataGridViewTextBoxColumn"
-        Me.TitleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'RecipeList
-        '
-        Me.RecipeList.DataSource = GetType(RecipeDal.Recipe)
-        '
-        'SplitContainer1
-        '
-        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SplitContainer1.Location = New System.Drawing.Point(2, 40)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        '
-        'SplitContainer1.Panel1
-        '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.dgSearchResults)
-        '
-        'SplitContainer1.Panel2
-        '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.SplitContainer2)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.txtCategories)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label5)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.txtMeasure)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label4)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.txtQuantity)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label3)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.txtName)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1048, 470)
-        Me.SplitContainer1.SplitterDistance = 348
-        Me.SplitContainer1.SplitterWidth = 3
-        Me.SplitContainer1.TabIndex = 4
-        '
-        'SplitContainer2
-        '
-        Me.SplitContainer2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SplitContainer2.Location = New System.Drawing.Point(2, 91)
-        Me.SplitContainer2.Margin = New System.Windows.Forms.Padding(2)
-        Me.SplitContainer2.Name = "SplitContainer2"
-        '
-        'SplitContainer2.Panel1
-        '
-        Me.SplitContainer2.Panel1.Controls.Add(Me.dgIngredient)
-        Me.SplitContainer2.Panel1.Controls.Add(Me.Label6)
-        '
-        'SplitContainer2.Panel2
-        '
-        Me.SplitContainer2.Panel2.Controls.Add(Me.txtDirections)
-        Me.SplitContainer2.Panel2.Controls.Add(Me.Label7)
-        Me.SplitContainer2.Size = New System.Drawing.Size(697, 378)
-        Me.SplitContainer2.SplitterDistance = 286
-        Me.SplitContainer2.SplitterWidth = 3
-        Me.SplitContainer2.TabIndex = 8
-        '
-        'dgIngredient
-        '
-        Me.dgIngredient.AllowUserToAddRows = False
-        Me.dgIngredient.AllowUserToDeleteRows = False
-        Me.dgIngredient.AutoGenerateColumns = False
-        Me.dgIngredient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgIngredient.ColumnHeadersVisible = False
-        Me.dgIngredient.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.UnitsDataGridViewTextBoxColumn, Me.UnitTypeDataGridViewTextBoxColumn, Me.DescriptionDataGridViewTextBoxColumn})
-        Me.dgIngredient.DataSource = Me.bsIngredient
-        Me.dgIngredient.Location = New System.Drawing.Point(7, 29)
-        Me.dgIngredient.Name = "dgIngredient"
-        Me.dgIngredient.ReadOnly = True
-        Me.dgIngredient.RowHeadersVisible = False
-        Me.dgIngredient.ShowEditingIcon = False
-        Me.dgIngredient.Size = New System.Drawing.Size(276, 346)
-        Me.dgIngredient.TabIndex = 11
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(11, 9)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(59, 13)
-        Me.Label6.TabIndex = 9
-        Me.Label6.Text = "Ingredients"
-        '
-        'txtDirections
-        '
-        Me.txtDirections.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtDirections.Location = New System.Drawing.Point(6, 29)
-        Me.txtDirections.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtDirections.Multiline = True
-        Me.txtDirections.Name = "txtDirections"
-        Me.txtDirections.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtDirections.Size = New System.Drawing.Size(403, 347)
-        Me.txtDirections.TabIndex = 11
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(10, 9)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(54, 13)
-        Me.Label7.TabIndex = 10
-        Me.Label7.Text = "Directions"
-        '
-        'txtCategories
-        '
-        Me.txtCategories.Location = New System.Drawing.Point(74, 59)
-        Me.txtCategories.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtCategories.Name = "txtCategories"
-        Me.txtCategories.Size = New System.Drawing.Size(377, 20)
-        Me.txtCategories.TabIndex = 7
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(13, 62)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(57, 13)
-        Me.Label5.TabIndex = 6
-        Me.Label5.Text = "Categories"
-        '
-        'txtMeasure
-        '
-        Me.txtMeasure.Location = New System.Drawing.Point(294, 35)
-        Me.txtMeasure.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtMeasure.Name = "txtMeasure"
-        Me.txtMeasure.Size = New System.Drawing.Size(157, 20)
-        Me.txtMeasure.TabIndex = 5
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(242, 39)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(48, 13)
-        Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Measure"
-        '
-        'txtQuantity
-        '
-        Me.txtQuantity.Location = New System.Drawing.Point(74, 35)
-        Me.txtQuantity.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtQuantity.Name = "txtQuantity"
-        Me.txtQuantity.Size = New System.Drawing.Size(157, 20)
-        Me.txtQuantity.TabIndex = 3
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 39)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(46, 13)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Quantity"
-        '
-        'txtName
-        '
-        Me.txtName.Location = New System.Drawing.Point(74, 14)
-        Me.txtName.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(617, 20)
-        Me.txtName.TabIndex = 1
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 17)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(35, 13)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Name"
-        '
-        'bsIngredient
-        '
-        Me.bsIngredient.AllowNew = False
-        Me.bsIngredient.DataSource = GetType(RecipeForm.IngredientVm)
-        '
-        'UnitsDataGridViewTextBoxColumn
-        '
-        Me.UnitsDataGridViewTextBoxColumn.DataPropertyName = "Units"
-        Me.UnitsDataGridViewTextBoxColumn.HeaderText = "Units"
-        Me.UnitsDataGridViewTextBoxColumn.Name = "UnitsDataGridViewTextBoxColumn"
-        Me.UnitsDataGridViewTextBoxColumn.ReadOnly = True
-        Me.UnitsDataGridViewTextBoxColumn.Width = 50
-        '
-        'UnitTypeDataGridViewTextBoxColumn
-        '
-        Me.UnitTypeDataGridViewTextBoxColumn.DataPropertyName = "UnitType"
-        Me.UnitTypeDataGridViewTextBoxColumn.HeaderText = "UnitType"
-        Me.UnitTypeDataGridViewTextBoxColumn.Name = "UnitTypeDataGridViewTextBoxColumn"
-        Me.UnitTypeDataGridViewTextBoxColumn.ReadOnly = True
-        Me.UnitTypeDataGridViewTextBoxColumn.Width = 50
-        '
-        'DescriptionDataGridViewTextBoxColumn
-        '
-        Me.DescriptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DescriptionDataGridViewTextBoxColumn.DataPropertyName = "Description"
-        Me.DescriptionDataGridViewTextBoxColumn.HeaderText = "Description"
-        Me.DescriptionDataGridViewTextBoxColumn.Name = "DescriptionDataGridViewTextBoxColumn"
-        Me.DescriptionDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'Form1
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1055, 511)
-        Me.Controls.Add(Me.SplitContainer1)
-        Me.Controls.Add(Me.btnSearch)
-        Me.Controls.Add(Me.txtSearch)
-        Me.Controls.Add(Me.Label1)
-        Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.Name = "Form1"
-        Me.Text = "Recipe"
-        CType(Me.dgSearchResults, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RecipeList, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.PerformLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
-        Me.SplitContainer2.Panel1.ResumeLayout(False)
-        Me.SplitContainer2.Panel1.PerformLayout()
-        Me.SplitContainer2.Panel2.ResumeLayout(False)
-        Me.SplitContainer2.Panel2.PerformLayout()
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer2.ResumeLayout(False)
-        CType(Me.dgIngredient, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.bsIngredient, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        components = New ComponentModel.Container()
+        Label1 = New Label()
+        txtSearch = New TextBox()
+        btnSearch = New Button()
+        dgSearchResults = New DataGridView()
+        IdDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        TitleDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        RecipeList = New BindingSource(components)
+        SplitContainer1 = New SplitContainer()
+        SplitContainer2 = New SplitContainer()
+        dgIngredient = New DataGridView()
+        UnitsDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        UnitTypeDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        DescriptionDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        bsIngredient = New BindingSource(components)
+        Label6 = New Label()
+        txtDirections = New TextBox()
+        Label7 = New Label()
+        txtCategories = New TextBox()
+        Label5 = New Label()
+        txtMeasure = New TextBox()
+        Label4 = New Label()
+        txtQuantity = New TextBox()
+        Label3 = New Label()
+        txtName = New TextBox()
+        Label2 = New Label()
+        CType(dgSearchResults, ComponentModel.ISupportInitialize).BeginInit()
+        CType(RecipeList, ComponentModel.ISupportInitialize).BeginInit()
+        CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
+        SplitContainer1.Panel1.SuspendLayout()
+        SplitContainer1.Panel2.SuspendLayout()
+        SplitContainer1.SuspendLayout()
+        CType(SplitContainer2, ComponentModel.ISupportInitialize).BeginInit()
+        SplitContainer2.Panel1.SuspendLayout()
+        SplitContainer2.Panel2.SuspendLayout()
+        SplitContainer2.SuspendLayout()
+        CType(dgIngredient, ComponentModel.ISupportInitialize).BeginInit()
+        CType(bsIngredient, ComponentModel.ISupportInitialize).BeginInit()
+        SuspendLayout()
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Location = New Point(13, 17)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(53, 20)
+        Label1.TabIndex = 0
+        Label1.Text = "Search"
+        ' 
+        ' txtSearch
+        ' 
+        txtSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtSearch.Location = New Point(77, 12)
+        txtSearch.Name = "txtSearch"
+        txtSearch.Size = New Size(1284, 27)
+        txtSearch.TabIndex = 1
+        ' 
+        ' btnSearch
+        ' 
+        btnSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnSearch.Location = New Point(1368, 9)
+        btnSearch.Name = "btnSearch"
+        btnSearch.Size = New Size(33, 32)
+        btnSearch.TabIndex = 2
+        btnSearch.Text = "Button1"
+        btnSearch.UseVisualStyleBackColor = True
+        ' 
+        ' dgSearchResults
+        ' 
+        dgSearchResults.AllowUserToAddRows = False
+        dgSearchResults.AllowUserToDeleteRows = False
+        dgSearchResults.AutoGenerateColumns = False
+        dgSearchResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgSearchResults.ColumnHeadersVisible = False
+        dgSearchResults.Columns.AddRange(New DataGridViewColumn() {IdDataGridViewTextBoxColumn, TitleDataGridViewTextBoxColumn})
+        dgSearchResults.DataSource = RecipeList
+        dgSearchResults.Dock = DockStyle.Fill
+        dgSearchResults.Location = New Point(0, 0)
+        dgSearchResults.Name = "dgSearchResults"
+        dgSearchResults.ReadOnly = True
+        dgSearchResults.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+        dgSearchResults.RowHeadersVisible = False
+        dgSearchResults.RowHeadersWidth = 51
+        dgSearchResults.RowTemplate.Height = 24
+        dgSearchResults.Size = New Size(463, 723)
+        dgSearchResults.TabIndex = 3
+        ' 
+        ' IdDataGridViewTextBoxColumn
+        ' 
+        IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
+        IdDataGridViewTextBoxColumn.HeaderText = "Id"
+        IdDataGridViewTextBoxColumn.MinimumWidth = 6
+        IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        IdDataGridViewTextBoxColumn.ReadOnly = True
+        IdDataGridViewTextBoxColumn.Visible = False
+        IdDataGridViewTextBoxColumn.Width = 125
+        ' 
+        ' TitleDataGridViewTextBoxColumn
+        ' 
+        TitleDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        TitleDataGridViewTextBoxColumn.DataPropertyName = "Title"
+        TitleDataGridViewTextBoxColumn.HeaderText = "Title"
+        TitleDataGridViewTextBoxColumn.MinimumWidth = 6
+        TitleDataGridViewTextBoxColumn.Name = "TitleDataGridViewTextBoxColumn"
+        TitleDataGridViewTextBoxColumn.ReadOnly = True
+        ' 
+        ' RecipeList
+        ' 
+        RecipeList.DataSource = GetType(RecipeDal.Recipe)
+        ' 
+        ' SplitContainer1
+        ' 
+        SplitContainer1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        SplitContainer1.Location = New Point(3, 62)
+        SplitContainer1.Name = "SplitContainer1"
+        ' 
+        ' SplitContainer1.Panel1
+        ' 
+        SplitContainer1.Panel1.Controls.Add(dgSearchResults)
+        ' 
+        ' SplitContainer1.Panel2
+        ' 
+        SplitContainer1.Panel2.Controls.Add(SplitContainer2)
+        SplitContainer1.Panel2.Controls.Add(txtCategories)
+        SplitContainer1.Panel2.Controls.Add(Label5)
+        SplitContainer1.Panel2.Controls.Add(txtMeasure)
+        SplitContainer1.Panel2.Controls.Add(Label4)
+        SplitContainer1.Panel2.Controls.Add(txtQuantity)
+        SplitContainer1.Panel2.Controls.Add(Label3)
+        SplitContainer1.Panel2.Controls.Add(txtName)
+        SplitContainer1.Panel2.Controls.Add(Label2)
+        SplitContainer1.Size = New Size(1397, 723)
+        SplitContainer1.SplitterDistance = 463
+        SplitContainer1.TabIndex = 4
+        ' 
+        ' SplitContainer2
+        ' 
+        SplitContainer2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        SplitContainer2.Location = New Point(3, 140)
+        SplitContainer2.Name = "SplitContainer2"
+        ' 
+        ' SplitContainer2.Panel1
+        ' 
+        SplitContainer2.Panel1.Controls.Add(dgIngredient)
+        SplitContainer2.Panel1.Controls.Add(Label6)
+        ' 
+        ' SplitContainer2.Panel2
+        ' 
+        SplitContainer2.Panel2.Controls.Add(txtDirections)
+        SplitContainer2.Panel2.Controls.Add(Label7)
+        SplitContainer2.Size = New Size(932, 582)
+        SplitContainer2.SplitterDistance = 382
+        SplitContainer2.TabIndex = 8
+        ' 
+        ' dgIngredient
+        ' 
+        dgIngredient.AllowUserToAddRows = False
+        dgIngredient.AllowUserToDeleteRows = False
+        dgIngredient.AutoGenerateColumns = False
+        dgIngredient.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgIngredient.ColumnHeadersVisible = False
+        dgIngredient.Columns.AddRange(New DataGridViewColumn() {UnitsDataGridViewTextBoxColumn, UnitTypeDataGridViewTextBoxColumn, DescriptionDataGridViewTextBoxColumn})
+        dgIngredient.DataSource = bsIngredient
+        dgIngredient.Location = New Point(9, 45)
+        dgIngredient.Margin = New Padding(4, 5, 4, 5)
+        dgIngredient.Name = "dgIngredient"
+        dgIngredient.ReadOnly = True
+        dgIngredient.RowHeadersVisible = False
+        dgIngredient.RowHeadersWidth = 51
+        dgIngredient.ShowEditingIcon = False
+        dgIngredient.Size = New Size(369, 532)
+        dgIngredient.TabIndex = 11
+        ' 
+        ' UnitsDataGridViewTextBoxColumn
+        ' 
+        UnitsDataGridViewTextBoxColumn.DataPropertyName = "Units"
+        UnitsDataGridViewTextBoxColumn.HeaderText = "Units"
+        UnitsDataGridViewTextBoxColumn.MinimumWidth = 6
+        UnitsDataGridViewTextBoxColumn.Name = "UnitsDataGridViewTextBoxColumn"
+        UnitsDataGridViewTextBoxColumn.ReadOnly = True
+        UnitsDataGridViewTextBoxColumn.Width = 50
+        ' 
+        ' UnitTypeDataGridViewTextBoxColumn
+        ' 
+        UnitTypeDataGridViewTextBoxColumn.DataPropertyName = "UnitType"
+        UnitTypeDataGridViewTextBoxColumn.HeaderText = "UnitType"
+        UnitTypeDataGridViewTextBoxColumn.MinimumWidth = 6
+        UnitTypeDataGridViewTextBoxColumn.Name = "UnitTypeDataGridViewTextBoxColumn"
+        UnitTypeDataGridViewTextBoxColumn.ReadOnly = True
+        UnitTypeDataGridViewTextBoxColumn.Width = 50
+        ' 
+        ' DescriptionDataGridViewTextBoxColumn
+        ' 
+        DescriptionDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DescriptionDataGridViewTextBoxColumn.DataPropertyName = "Description"
+        DescriptionDataGridViewTextBoxColumn.HeaderText = "Description"
+        DescriptionDataGridViewTextBoxColumn.MinimumWidth = 6
+        DescriptionDataGridViewTextBoxColumn.Name = "DescriptionDataGridViewTextBoxColumn"
+        DescriptionDataGridViewTextBoxColumn.ReadOnly = True
+        ' 
+        ' bsIngredient
+        ' 
+        bsIngredient.AllowNew = False
+        bsIngredient.DataSource = GetType(IngredientVm)
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Location = New Point(15, 14)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(83, 20)
+        Label6.TabIndex = 9
+        Label6.Text = "Ingredients"
+        ' 
+        ' txtDirections
+        ' 
+        txtDirections.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        txtDirections.Location = New Point(8, 45)
+        txtDirections.Multiline = True
+        txtDirections.Name = "txtDirections"
+        txtDirections.ScrollBars = ScrollBars.Both
+        txtDirections.Size = New Size(538, 537)
+        txtDirections.TabIndex = 11
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(13, 14)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(76, 20)
+        Label7.TabIndex = 10
+        Label7.Text = "Directions"
+        ' 
+        ' txtCategories
+        ' 
+        txtCategories.Location = New Point(99, 91)
+        txtCategories.Name = "txtCategories"
+        txtCategories.Size = New Size(501, 27)
+        txtCategories.TabIndex = 7
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(17, 95)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(80, 20)
+        Label5.TabIndex = 6
+        Label5.Text = "Categories"
+        ' 
+        ' txtMeasure
+        ' 
+        txtMeasure.Location = New Point(392, 54)
+        txtMeasure.Name = "txtMeasure"
+        txtMeasure.Size = New Size(208, 27)
+        txtMeasure.TabIndex = 5
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Location = New Point(323, 60)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(65, 20)
+        Label4.TabIndex = 4
+        Label4.Text = "Measure"
+        ' 
+        ' txtQuantity
+        ' 
+        txtQuantity.Location = New Point(99, 54)
+        txtQuantity.Name = "txtQuantity"
+        txtQuantity.Size = New Size(208, 27)
+        txtQuantity.TabIndex = 3
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(17, 60)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(65, 20)
+        Label3.TabIndex = 2
+        Label3.Text = "Quantity"
+        ' 
+        ' txtName
+        ' 
+        txtName.Location = New Point(99, 22)
+        txtName.Name = "txtName"
+        txtName.Size = New Size(821, 27)
+        txtName.TabIndex = 1
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(17, 26)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(49, 20)
+        Label2.TabIndex = 0
+        Label2.Text = "Name"
+        ' 
+        ' Form1
+        ' 
+        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(1407, 786)
+        Controls.Add(SplitContainer1)
+        Controls.Add(btnSearch)
+        Controls.Add(txtSearch)
+        Controls.Add(Label1)
+        Name = "Form1"
+        Text = "Recipe"
+        CType(dgSearchResults, ComponentModel.ISupportInitialize).EndInit()
+        CType(RecipeList, ComponentModel.ISupportInitialize).EndInit()
+        SplitContainer1.Panel1.ResumeLayout(False)
+        SplitContainer1.Panel2.ResumeLayout(False)
+        SplitContainer1.Panel2.PerformLayout()
+        CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
+        SplitContainer1.ResumeLayout(False)
+        SplitContainer2.Panel1.ResumeLayout(False)
+        SplitContainer2.Panel1.PerformLayout()
+        SplitContainer2.Panel2.ResumeLayout(False)
+        SplitContainer2.Panel2.PerformLayout()
+        CType(SplitContainer2, ComponentModel.ISupportInitialize).EndInit()
+        SplitContainer2.ResumeLayout(False)
+        CType(dgIngredient, ComponentModel.ISupportInitialize).EndInit()
+        CType(bsIngredient, ComponentModel.ISupportInitialize).EndInit()
+        ResumeLayout(False)
+        PerformLayout()
 
     End Sub
 

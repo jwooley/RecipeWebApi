@@ -1,5 +1,5 @@
-﻿Imports Recipe.Utils
-Imports RecipeDal
+﻿Imports RecipeDal
+Imports Recipe.Utils
 
 Public Class Form1
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
