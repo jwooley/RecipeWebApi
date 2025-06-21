@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Recipe.Utils
 {
@@ -26,14 +23,14 @@ namespace Recipe.Utils
         // Threshold for detecting common fractions (epsilon)
         private const decimal Tolerance = 0.01m;
 
-        public static string ToFractionString(this string value) => 
+        public static string ToFractionString(this string value) =>
             decimal.TryParse(value, out decimal result) ? result.ToFractionString() : value;
-        
+
         public static string ToFractionString(this decimal value, int precision = 3)
         {
-            if (precision < 0) 
+            if (precision < 0)
                 throw new ArgumentOutOfRangeException(nameof(precision), "Precision must be non-negative.");
-            
+
             // Handle special case of zero precision
             if (precision == 0)
             {
@@ -43,7 +40,7 @@ namespace Recipe.Utils
             // Handle negative values
             bool isNegative = value < 0;
             value = Math.Abs(value);
-            
+
             // Extract whole part and fractional part
             decimal wholePart = Math.Floor(value);
             decimal fractionalPart = value - wholePart;
@@ -116,7 +113,7 @@ namespace Recipe.Utils
             // Ensure positive values for GCD
             a = Math.Abs(a);
             b = Math.Abs(b);
-            
+
             while (b != 0)
             {
                 int temp = b;

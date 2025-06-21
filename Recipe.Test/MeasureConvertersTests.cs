@@ -32,7 +32,7 @@ namespace Recipe.Test
         {
             // Act
             double actual = MeasureConverters.Convert(sourceUnit, targetUnit, value);
-            
+
             // Assert
             _output.WriteLine($"Converting {value} {sourceUnit} to {targetUnit}: Expected {expected}, got {actual}");
             Assert.Equal(expected, actual, Tolerance);
@@ -46,7 +46,7 @@ namespace Recipe.Test
         {
             // Act
             double actual = MeasureConverters.Convert(sourceUnit, targetUnit, value);
-            
+
             // Assert
             _output.WriteLine($"Converting {value} {sourceUnit} to {targetUnit}: Expected {expected}, got {actual}");
             Assert.Equal(expected, actual, Tolerance);
@@ -59,9 +59,9 @@ namespace Recipe.Test
         public void Convert_UnsupportedUnits_ThrowsNotSupportedException(string sourceUnit, string targetUnit, double value)
         {
             // Act & Assert
-            var exception = Assert.Throws<NotSupportedException>(() => 
+            var exception = Assert.Throws<NotSupportedException>(() =>
                 MeasureConverters.Convert(sourceUnit, targetUnit, value));
-            
+
             _output.WriteLine($"Exception message: {exception.Message}");
             Assert.Contains(sourceUnit, exception.Message);
             Assert.Contains(targetUnit, exception.Message);
@@ -80,7 +80,7 @@ namespace Recipe.Test
         {
             // Act
             double actualGrams = MeasureConverters.OuncesToGrams(ounces);
-            
+
             // Assert
             _output.WriteLine($"Converting {ounces} oz to grams: Expected {expectedGrams}, got {actualGrams}");
             Assert.Equal(expectedGrams, actualGrams, Tolerance);
@@ -95,7 +95,7 @@ namespace Recipe.Test
         {
             // Act
             double actualGrams = MeasureConverters.Convert("oz", "g", ounces);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {ounces} oz to grams: Expected {expectedGrams}, got {actualGrams}");
             Assert.Equal(expectedGrams, actualGrams, Tolerance);
@@ -110,7 +110,7 @@ namespace Recipe.Test
         {
             // Act
             double actualOunces = MeasureConverters.GramsToOunces(grams);
-            
+
             // Assert
             _output.WriteLine($"Converting {grams} g to ounces: Expected {expectedOunces}, got {actualOunces}");
             Assert.Equal(expectedOunces, actualOunces, Tolerance);
@@ -125,7 +125,7 @@ namespace Recipe.Test
         {
             // Act
             double actualOunces = MeasureConverters.Convert("g", "oz", grams);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {grams} g to ounces: Expected {expectedOunces}, got {actualOunces}");
             Assert.Equal(expectedOunces, actualOunces, Tolerance);
@@ -140,10 +140,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.OuncesToGramsConverter();
-            
+
             // Act
             double actualGrams = converter(ounces);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {ounces} oz to grams: Expected {expectedGrams}, got {actualGrams}");
             Assert.Equal(expectedGrams, actualGrams, Tolerance);
@@ -158,10 +158,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.GramsToOuncesConverter();
-            
+
             // Act
             double actualOunces = converter(grams);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {grams} g to ounces: Expected {expectedOunces}, got {actualOunces}");
             Assert.Equal(expectedOunces, actualOunces, Tolerance);
@@ -176,7 +176,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualGrams = MeasureConverters.OuncesToGrams(ounces);
-            
+
             // Assert
             _output.WriteLine($"Converting {ounces} oz to grams (decimal): Expected {expectedGrams}, got {actualGrams}");
             Assert.Equal(expectedGrams, actualGrams, 4); // 4 decimal places precision
@@ -191,7 +191,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualOunces = MeasureConverters.GramsToOunces(grams);
-            
+
             // Assert
             _output.WriteLine($"Converting {grams} g to ounces (decimal): Expected {expectedOunces}, got {actualOunces}");
             Assert.Equal(expectedOunces, actualOunces, 4); // 4 decimal places precision
@@ -205,10 +205,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.OuncesToGramsConverterDecimal();
-            
+
             // Act
             decimal actualGrams = converter(ounces);
-            
+
             // Assert
             _output.WriteLine($"Using decimal converter function: {ounces} oz to grams: Expected {expectedGrams}, got {actualGrams}");
             Assert.Equal(expectedGrams, actualGrams, 4); // 4 decimal places precision
@@ -222,10 +222,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.GramsToOuncesConverterDecimal();
-            
+
             // Act
             decimal actualOunces = converter(grams);
-            
+
             // Assert
             _output.WriteLine($"Using decimal converter function: {grams} g to ounces: Expected {expectedOunces}, got {actualOunces}");
             Assert.Equal(expectedOunces, actualOunces, 4); // 4 decimal places precision
@@ -244,7 +244,7 @@ namespace Recipe.Test
         {
             // Act
             double actualPints = MeasureConverters.CupsToPints(cups);
-            
+
             // Assert
             _output.WriteLine($"Converting {cups} cups to pints: Expected {expectedPints}, got {actualPints}");
             Assert.Equal(expectedPints, actualPints, Tolerance);
@@ -259,7 +259,7 @@ namespace Recipe.Test
         {
             // Act
             double actualPints = MeasureConverters.Convert("c", "pt", cups);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {cups} cups to pints: Expected {expectedPints}, got {actualPints}");
             Assert.Equal(expectedPints, actualPints, Tolerance);
@@ -274,7 +274,7 @@ namespace Recipe.Test
         {
             // Act
             double actualCups = MeasureConverters.PintsToCups(pints);
-            
+
             // Assert
             _output.WriteLine($"Converting {pints} pints to cups: Expected {expectedCups}, got {actualCups}");
             Assert.Equal(expectedCups, actualCups, Tolerance);
@@ -289,7 +289,7 @@ namespace Recipe.Test
         {
             // Act
             double actualCups = MeasureConverters.Convert("pt", "c", pints);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {pints} pints to cups: Expected {expectedCups}, got {actualCups}");
             Assert.Equal(expectedCups, actualCups, Tolerance);
@@ -304,7 +304,7 @@ namespace Recipe.Test
         {
             // Act
             double actualGallons = MeasureConverters.PintsToGallons(pints);
-            
+
             // Assert
             _output.WriteLine($"Converting {pints} pints to gallons: Expected {expectedGallons}, got {actualGallons}");
             Assert.Equal(expectedGallons, actualGallons, Tolerance);
@@ -319,7 +319,7 @@ namespace Recipe.Test
         {
             // Act
             double actualGallons = MeasureConverters.Convert("pt", "g", pints);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {pints} pints to gallons: Expected {expectedGallons}, got {actualGallons}");
             Assert.Equal(expectedGallons, actualGallons, Tolerance);
@@ -334,7 +334,7 @@ namespace Recipe.Test
         {
             // Act
             double actualPints = MeasureConverters.GallonsToPints(gallons);
-            
+
             // Assert
             _output.WriteLine($"Converting {gallons} gallons to pints: Expected {expectedPints}, got {actualPints}");
             Assert.Equal(expectedPints, actualPints, Tolerance);
@@ -349,7 +349,7 @@ namespace Recipe.Test
         {
             // Act
             double actualPints = MeasureConverters.Convert("g", "pt", gallons);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {gallons} gallons to pints: Expected {expectedPints}, got {actualPints}");
             Assert.Equal(expectedPints, actualPints, Tolerance);
@@ -364,7 +364,7 @@ namespace Recipe.Test
         {
             // Act
             double actualGallons = MeasureConverters.CupsToGallons(cups);
-            
+
             // Assert
             _output.WriteLine($"Converting {cups} cups to gallons: Expected {expectedGallons}, got {actualGallons}");
             Assert.Equal(expectedGallons, actualGallons, Tolerance);
@@ -379,7 +379,7 @@ namespace Recipe.Test
         {
             // Act
             double actualGallons = MeasureConverters.Convert("c", "g", cups);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {cups} cups to gallons: Expected {expectedGallons}, got {actualGallons}");
             Assert.Equal(expectedGallons, actualGallons, Tolerance);
@@ -394,7 +394,7 @@ namespace Recipe.Test
         {
             // Act
             double actualCups = MeasureConverters.GallonsToCups(gallons);
-            
+
             // Assert
             _output.WriteLine($"Converting {gallons} gallons to cups: Expected {expectedCups}, got {actualCups}");
             Assert.Equal(expectedCups, actualCups, Tolerance);
@@ -409,7 +409,7 @@ namespace Recipe.Test
         {
             // Act
             double actualCups = MeasureConverters.Convert("g", "c", gallons);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {gallons} gallons to cups: Expected {expectedCups}, got {actualCups}");
             Assert.Equal(expectedCups, actualCups, Tolerance);
@@ -424,7 +424,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualPints = MeasureConverters.CupsToPints(cups);
-            
+
             // Assert
             _output.WriteLine($"Converting {cups} cups to pints (decimal): Expected {expectedPints}, got {actualPints}");
             Assert.Equal(expectedPints, actualPints, 4); // 4 decimal places precision
@@ -439,7 +439,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualCups = MeasureConverters.PintsToCups(pints);
-            
+
             // Assert
             _output.WriteLine($"Converting {pints} pints to cups (decimal): Expected {expectedCups}, got {actualCups}");
             Assert.Equal(expectedCups, actualCups, 4); // 4 decimal places precision
@@ -454,7 +454,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualGallons = MeasureConverters.PintsToGallons(pints);
-            
+
             // Assert
             _output.WriteLine($"Converting {pints} pints to gallons (decimal): Expected {expectedGallons}, got {actualGallons}");
             Assert.Equal(expectedGallons, actualGallons, 4); // 4 decimal places precision
@@ -469,7 +469,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualPints = MeasureConverters.GallonsToPints(gallons);
-            
+
             // Assert
             _output.WriteLine($"Converting {gallons} gallons to pints (decimal): Expected {expectedPints}, got {actualPints}");
             Assert.Equal(expectedPints, actualPints, 4); // 4 decimal places precision
@@ -484,7 +484,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualGallons = MeasureConverters.CupsToGallons(cups);
-            
+
             // Assert
             _output.WriteLine($"Converting {cups} cups to gallons (decimal): Expected {expectedGallons}, got {actualGallons}");
             Assert.Equal(expectedGallons, actualGallons, 4); // 4 decimal places precision
@@ -499,7 +499,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualCups = MeasureConverters.GallonsToCups(gallons);
-            
+
             // Assert
             _output.WriteLine($"Converting {gallons} gallons to cups (decimal): Expected {expectedCups}, got {actualCups}");
             Assert.Equal(expectedCups, actualCups, 4); // 4 decimal places precision
@@ -513,10 +513,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.CupsToPintsConverter();
-            
+
             // Act
             double actualPints = converter(cups);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {cups} cups to pints: Expected {expectedPints}, got {actualPints}");
             Assert.Equal(expectedPints, actualPints, Tolerance);
@@ -530,10 +530,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.PintsToCupsConverter();
-            
+
             // Act
             double actualCups = converter(pints);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {pints} pints to cups: Expected {expectedCups}, got {actualCups}");
             Assert.Equal(expectedCups, actualCups, Tolerance);
@@ -547,10 +547,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.PintsToGallonsConverter();
-            
+
             // Act
             double actualGallons = converter(pints);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {pints} pints to gallons: Expected {expectedGallons}, got {actualGallons}");
             Assert.Equal(expectedGallons, actualGallons, Tolerance);
@@ -564,10 +564,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.GallonsToPintsConverter();
-            
+
             // Act
             double actualPints = converter(gallons);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {gallons} gallons to pints: Expected {expectedPints}, got {actualPints}");
             Assert.Equal(expectedPints, actualPints, Tolerance);
@@ -581,10 +581,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.CupsToGallonsConverter();
-            
+
             // Act
             double actualGallons = converter(cups);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {cups} cups to gallons: Expected {expectedGallons}, got {actualGallons}");
             Assert.Equal(expectedGallons, actualGallons, Tolerance);
@@ -598,10 +598,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.GallonsToCupsConverter();
-            
+
             // Act
             double actualCups = converter(gallons);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {gallons} gallons to cups: Expected {expectedCups}, got {actualCups}");
             Assert.Equal(expectedCups, actualCups, Tolerance);
@@ -620,7 +620,7 @@ namespace Recipe.Test
         {
             // Act
             double actualTablespoons = MeasureConverters.TeaspoonsToTablespoons(teaspoons);
-            
+
             // Assert
             _output.WriteLine($"Converting {teaspoons} teaspoons to tablespoons: Expected {expectedTablespoons}, got {actualTablespoons}");
             Assert.Equal(expectedTablespoons, actualTablespoons, Tolerance);
@@ -635,7 +635,7 @@ namespace Recipe.Test
         {
             // Act
             double actualTablespoons = MeasureConverters.Convert("ts", "tb", teaspoons);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {teaspoons} teaspoons to tablespoons: Expected {expectedTablespoons}, got {actualTablespoons}");
             Assert.Equal(expectedTablespoons, actualTablespoons, Tolerance);
@@ -650,7 +650,7 @@ namespace Recipe.Test
         {
             // Act
             double actualTeaspoons = MeasureConverters.TablespoonsToTeaspoons(tablespoons);
-            
+
             // Assert
             _output.WriteLine($"Converting {tablespoons} tablespoons to teaspoons: Expected {expectedTeaspoons}, got {actualTeaspoons}");
             Assert.Equal(expectedTeaspoons, actualTeaspoons, Tolerance);
@@ -665,7 +665,7 @@ namespace Recipe.Test
         {
             // Act
             double actualTeaspoons = MeasureConverters.Convert("tb", "ts", tablespoons);
-            
+
             // Assert
             _output.WriteLine($"Using Convert method: {tablespoons} tablespoons to teaspoons: Expected {expectedTeaspoons}, got {actualTeaspoons}");
             Assert.Equal(expectedTeaspoons, actualTeaspoons, Tolerance);
@@ -680,7 +680,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualTablespoons = MeasureConverters.TeaspoonsToTablespoons(teaspoons);
-            
+
             // Assert
             _output.WriteLine($"Converting {teaspoons} teaspoons to tablespoons (decimal): Expected {expectedTablespoons}, got {actualTablespoons}");
             Assert.Equal(expectedTablespoons, actualTablespoons, 4); // 4 decimal places precision
@@ -695,7 +695,7 @@ namespace Recipe.Test
         {
             // Act
             decimal actualTeaspoons = MeasureConverters.TablespoonsToTeaspoons(tablespoons);
-            
+
             // Assert
             _output.WriteLine($"Converting {tablespoons} tablespoons to teaspoons (decimal): Expected {expectedTeaspoons}, got {actualTeaspoons}");
             Assert.Equal(expectedTeaspoons, actualTeaspoons, 4); // 4 decimal places precision
@@ -709,10 +709,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.TeaspoonsToTablespoonsConverter();
-            
+
             // Act
             double actualTablespoons = converter(teaspoons);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {teaspoons} teaspoons to tablespoons: Expected {expectedTablespoons}, got {actualTablespoons}");
             Assert.Equal(expectedTablespoons, actualTablespoons, Tolerance);
@@ -726,10 +726,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.TablespoonsToTeaspoonsConverter();
-            
+
             // Act
             double actualTeaspoons = converter(tablespoons);
-            
+
             // Assert
             _output.WriteLine($"Using converter function: {tablespoons} tablespoons to teaspoons: Expected {expectedTeaspoons}, got {actualTeaspoons}");
             Assert.Equal(expectedTeaspoons, actualTeaspoons, Tolerance);
@@ -743,10 +743,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.TeaspoonsToTablespoonsConverterDecimal();
-            
+
             // Act
             decimal actualTablespoons = converter(teaspoons);
-            
+
             // Assert
             _output.WriteLine($"Using decimal converter function: {teaspoons} teaspoons to tablespoons: Expected {expectedTablespoons}, got {actualTablespoons}");
             Assert.Equal(expectedTablespoons, actualTablespoons, 4); // 4 decimal places precision
@@ -760,10 +760,10 @@ namespace Recipe.Test
         {
             // Arrange
             var converter = MeasureConverters.TablespoonsToTeaspoonsConverterDecimal();
-            
+
             // Act
             decimal actualTeaspoons = converter(tablespoons);
-            
+
             // Assert
             _output.WriteLine($"Using decimal converter function: {tablespoons} tablespoons to teaspoons: Expected {expectedTeaspoons}, got {actualTeaspoons}");
             Assert.Equal(expectedTeaspoons, actualTeaspoons, 4); // 4 decimal places precision
@@ -780,10 +780,10 @@ namespace Recipe.Test
             double ounces = 5.0;
             var converter = MeasureConverters.OuncesToGramsConverter();
             double expected = converter(ounces);
-            
+
             // Act
             double actual = MeasureConverters.ApplyConverter(ounces, converter);
-            
+
             // Assert
             _output.WriteLine($"ApplyConverter result: Expected {expected}, got {actual}");
             Assert.Equal(expected, actual);
@@ -796,19 +796,19 @@ namespace Recipe.Test
             double originalValue = 10.0;
             var ouncesToGrams = MeasureConverters.OuncesToGramsConverter();
             var gramsToOunces = MeasureConverters.GramsToOuncesConverter();
-            
+
             // Creating a composed function that should essentially be an identity function
             // (converts oz to g and back to oz)
             var composed = MeasureConverters.ComposeConverters(ouncesToGrams, gramsToOunces);
-            
+
             // Act
             double result = composed(originalValue);
-            
+
             // Assert
             _output.WriteLine($"Composed converter result: Input {originalValue}, Output {result}");
             Assert.Equal(originalValue, result, Tolerance);
         }
-        
+
         [Theory]
         [InlineData(5.0, 2.0, 10.0)] // 5 * 2 = 10
         [InlineData(0.0, 100.0, 0.0)] // 0 * 100 = 0
@@ -816,19 +816,19 @@ namespace Recipe.Test
         public void CreateConverter_CreatesCorrectFunction(double input, double factor, double expected)
         {
             // Arrange - We'll need to use reflection since CreateConverter is private
-            var method = typeof(MeasureConverters).GetMethod("CreateConverter", 
+            var method = typeof(MeasureConverters).GetMethod("CreateConverter",
                 System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
             var genericMethod = method.MakeGenericMethod(typeof(double));
-            
+
             // Act
             var converter = (Func<double, double>)genericMethod.Invoke(null, new object[] { factor });
             double result = converter(input);
-            
+
             // Assert
             _output.WriteLine($"CreateConverter with factor {factor}: Input {input}, Output {result}, Expected {expected}");
             Assert.Equal(expected, result, Tolerance);
         }
-        
+
         [Theory]
         [InlineData(10.0, 2.0, 5.0)] // 10 / 2 = 5
         [InlineData(0.0, 100.0, 0.0)] // 0 / 100 = 0
@@ -836,14 +836,14 @@ namespace Recipe.Test
         public void CreateInverseConverter_CreatesCorrectFunction(double input, double factor, double expected)
         {
             // Arrange - We'll need to use reflection since CreateInverseConverter is private
-            var method = typeof(MeasureConverters).GetMethod("CreateInverseConverter", 
+            var method = typeof(MeasureConverters).GetMethod("CreateInverseConverter",
                 System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
             var genericMethod = method.MakeGenericMethod(typeof(double));
-            
+
             // Act
             var converter = (Func<double, double>)genericMethod.Invoke(null, new object[] { factor });
             double result = converter(input);
-            
+
             // Assert
             _output.WriteLine($"CreateInverseConverter with factor {factor}: Input {input}, Output {result}, Expected {expected}");
             Assert.Equal(expected, result, Tolerance);
